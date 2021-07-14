@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
 import {Button, TextField, makeStyles} from '@material-ui/core';
 import logo from "../../ethereum.svg"
 import login from "../../images/login.svg"
@@ -17,42 +16,46 @@ const useStyles = makeStyles({
 
 const LoginPage = (props) =>{
 
-    let history=useHistory();
+    let keys= Object.keys(localStorage);
     const classes=useStyles();
     const [address,setAddress] = useState("");
+    //const [validation,setValidation] = useState(false);
 
-    function handleAddress(value){
-        setAddress(value);
+    function handleAddress(ethAddress){
+        setAddress(ethAddress);
+        console.log(ethAddress);
     }
 
-    function handleSubmit(){
-        let obj=new Object();
-        obj.id= localStorage.length;
-        obj.user = address;
-        obj.accBalance = Math.random() * 10;
-        /*fix ether price for now*/
-        obj.value=obj.accBalance * 1868.05;
-        obj.sendEther ={
-            to: "",
-            send: ""
-        }
-        obj.getEther={
-            from: "",
-            get: ""
-        }
+    /*function handleSubmit(){
+       /* let keys= Object.keys(localStorage);
+        let find=keys.filter(key=>{
+            return key===address
+        });
 
-        localStorage.setItem(address,JSON.stringify(obj));
-    }
-
-    /*function readCookie(){
-        const user = Cookies.get("user");
-        if(user){
-            setAuthentication(true);
+        //user found in local storage
+        if(find.length!==0 && address.length>0){
+            let obj=new Object();
+            obj.id= localStorage.length;
+            obj.user = address;
+            obj.accBalance = Math.random() * 10;
+            //fixed ether price for now
+            obj.value=obj.accBalance * 1868.05;
+            obj.sendEther = {
+                to: "",
+                send: ""
+            }
+            obj.getEther={
+                from: "",
+                get: ""
+            }
+            localStorage.setItem(address,JSON.stringify(obj));
+            setValidation(true);
         }
-    }
-    useEffect(()=>{
-        readCookie();
-    },[])*/
+        else {
+            console.log("Invalid address");
+            setValidation(false);
+        }
+    }*/
 
     return (
         <div className={styles.main_container}>
@@ -71,18 +74,20 @@ const LoginPage = (props) =>{
                     value={address}
                     onChange={(event)=>handleAddress(event.target.value)}>
                 </TextField>
-                <Button
+                {address ?
+                    <Button
                     variant="contained"
                     color="primary"
                     className={classes.root}
                     onClick={()=>{
-                        handleSubmit();
                         props.handleAddress(address);
-                        auth.login(()=>{
+                            auth.login(()=>{
                                 props.history.push("/dashboard");
                             });
                         }}>Sign in
                 </Button>
+                : <p>Enter your address</p>
+                }
             </div>
         </div>
     );

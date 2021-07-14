@@ -26,7 +26,6 @@ function Header(props){
                     </LockIcon> 
                 </div> :
                 <div className={styles.container}>
-                    <h2>Dashboard {props.userAddress}</h2>
                     <ArrowBackIcon
                         className={styles.back}
                         onClick={()=>{ props.userLogout.push("/dashboard") }}>

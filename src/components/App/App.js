@@ -23,7 +23,6 @@ function App() {
   }*/
 
   function handleAddress(loginAddress){
-    console.log(loginAddress);
     setAddress(loginAddress);
   }
 
