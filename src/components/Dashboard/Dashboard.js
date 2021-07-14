@@ -12,22 +12,24 @@ const Dashboard = (props) =>{
     let history=useHistory();
 
     return (
-        <div>
+        <div className={styles.main_container}>
             <Header userAddress={props.userAddress} userLogout={props.history}/>
             <h2 className={styles.heading}>Dashboard</h2>
-            <Card 
-                title="Explore"
-                content="Explore the amount of Ethereum"
-                explore={props.history}
-            />
-            <Card 
-                title="Mint"
-                content="Buy more Ethereum"
-                /> {/* vjerojatno slati podatke iz local storage */}
-            <Card 
-                title="Transfer"
-                content="Transfer to someone"
-            />
+            <div className={styles.container}>
+                <Card 
+                    title="Explore"
+                    content="Explore the amount of Ethereum"
+                    explore={props.history}
+                />
+                <Card 
+                    title="Mint"
+                    content="Buy more Ethereum"
+                    /> {/* vjerojatno slati podatke iz local storage */}
+                <Card 
+                    title="Transfer"
+                    content="Transfer to someone"
+                />
+            </div>
             <Footer />
         </div>
     );
