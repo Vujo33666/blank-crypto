@@ -31,7 +31,6 @@ const LoginPage = (props) =>{
             setAuthentication(true);
         }
     }
-
     useEffect(()=>{
         readCookie();
     },[])*/
@@ -57,11 +56,11 @@ const LoginPage = (props) =>{
                     color="primary"
                     className={classes.root}
                     onClick={()=>{
-                        
-                    auth.login(()=>{
-                            props.history.push("/dashboard");
-                        });
-                    }}>Sign in
+                        props.handleAddress(address);
+                        auth.login(()=>{
+                                props.history.push("/dashboard");
+                            });
+                        }}>Sign in
                 </Button>
             </div>
         </div>
