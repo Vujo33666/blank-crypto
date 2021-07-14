@@ -1,3 +1,48 @@
 .heading{
-    font-family: cursive;
+    color:white;
+}
+
+
+/*.circle{
+    z-index:-1;
+    width:100px;
+    height: auto;
+    border-radius: 50%;
+    position: absolute;
+    top:10px;
+    left:80px;
+}*/
+
+.container{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color:#5390d9;
+    border-radius: 50px;
+    padding: 50px 0px;
+    width: 80%;
+    max-width: 450px;
+    min-width:330px;
+    margin: 5% auto;
+}
+
+
+.logo{
+    width:50px;
+    height: auto;
+    margin: auto;
+}
+
+.login{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    z-index: -1;
+    width:50%;
+    max-width: 750px;
+}
+
+.fields{
+    width: 60%;
+    min-width:180px;
 }
