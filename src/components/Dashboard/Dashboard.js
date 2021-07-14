@@ -1,15 +1,10 @@
 import React from "react";
-import { Redirect,useHistory } from "react-router";
-import auth from '../../auth';
-import Cookies from "js-cookie";
 import styles from './style.module.css'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Card from "../Card/Card";
 
 const Dashboard = (props) =>{
-
-    let history=useHistory();
 
     return (
         <div className={styles.main_container}>

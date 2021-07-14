@@ -1,0 +1,14 @@
+.heading{
+    font-size: 36px;
+    color: #333;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main_container{
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+}
