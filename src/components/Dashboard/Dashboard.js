@@ -8,7 +8,7 @@ const Dashboard = (props) =>{
 
     return (
         <div className={styles.main_container}>
-            <Header userAddress={props.userAddress} userLogout={props.history}/>
+            <Header page="dashboard" userAddress={props.userAddress} userLogout={props.history}/>
             <h2 className={styles.heading}>Dashboard</h2>
             <div className={styles.container}>
                 <Card 

@@ -13,7 +13,7 @@ function Header(props){
                 <img src={logo} className={styles.logo} alt="logo" />
                 <h1>CryptoPro</h1>
             </div>
-            {props.userAddress ?
+            {props.page==="dashboard" ?
                 <div className={styles.container}>
                     <h2>Account: {props.userAddress}</h2>
                         <LockIcon 

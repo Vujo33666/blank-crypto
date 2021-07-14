@@ -25,6 +25,25 @@ const LoginPage = (props) =>{
         setAddress(value);
     }
 
+    function handleSubmit(){
+        let obj=new Object();
+        obj.id= localStorage.length;
+        obj.user = address;
+        obj.accBalance = Math.random() * 10;
+        /*fix ether price for now*/
+        obj.value=obj.accBalance * 1868.05;
+        obj.sendEther ={
+            to: "",
+            send: ""
+        }
+        obj.getEther={
+            from: "",
+            get: ""
+        }
+        
+        localStorage.setItem("object_" + localStorage.length,JSON.stringify(obj));
+    }
+
     /*function readCookie(){
         const user = Cookies.get("user");
         if(user){
@@ -41,7 +60,8 @@ const LoginPage = (props) =>{
             <div className={styles.container}>
                 <img src={logo} className={styles.logo} alt="logo" />
                 <h2 className={styles.heading}>Login</h2>
-                <TextField 
+                <TextField
+                    required
                     id="outlined-basic"
                     label="Your address"
                     variant="outlined"
@@ -56,6 +76,7 @@ const LoginPage = (props) =>{
                     color="primary"
                     className={classes.root}
                     onClick={()=>{
+                        handleSubmit();
                         props.handleAddress(address);
                         auth.login(()=>{
                                 props.history.push("/dashboard");
