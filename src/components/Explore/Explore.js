@@ -21,8 +21,14 @@ const Explore = (props) =>{
         setAddress(value);
     }
 
-    function handleBalance(value){
-        setBalance(value); //need to get account balance data from local storage
+    function handleBalance(user){
+        const getUser = JSON.parse(window.localStorage.getItem(user));
+        if(getUser){
+            setBalance(getUser.accBalance);
+        }
+        else{
+            setBalance(0);
+        }
     }
 
     return(
@@ -47,10 +53,10 @@ const Explore = (props) =>{
                     color="primary"
                     className={classes.root}
                     onClick={()=>{
-                        handleBalance(address)
+                        handleBalance(address);
                         }}>Explore
                 </Button>
-                {balance ? balance : null}
+                {balance ? <p>You have {balance.toFixed(8)} Ethereum coins</p> : <p>Enter an existing account</p>}
             </div>
             <Footer />
         </div>

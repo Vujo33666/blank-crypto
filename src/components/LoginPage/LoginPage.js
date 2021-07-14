@@ -40,8 +40,8 @@ const LoginPage = (props) =>{
             from: "",
             get: ""
         }
-        
-        localStorage.setItem("object_" + localStorage.length,JSON.stringify(obj));
+
+        localStorage.setItem(address,JSON.stringify(obj));
     }
 
     /*function readCookie(){

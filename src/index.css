@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
 html{
   background-color: #bcc3eb;
-  min-width: 350px;
+  min-width: 400px;
 }
 
 h1, h2, h3{
-  font-family: cursive;
+  font-family: 'Caveat', cursive;
+}
+
+h1{
+  font-size:40px;
+}
+h2{
+  font-size:32px;
+}
+h3{
+  font-size:30px;
+}
+p{
+  font-size:30px;
 }
 
 body {
@@ -14,9 +29,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Caveat', cursive;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button{
+  font-family: 'Caveat', cursive;
 }
