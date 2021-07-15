@@ -30,7 +30,7 @@ export default function FormDialog() {
         <DialogTitle id="form-dialog-title">Transfer</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          Enter the amount of Ethereum for transfer and their address. IT IS NOF FINISHED
+          Enter the amount of Ethereum for transfer and their address. IT IS NOT FINISHED
           </DialogContentText>
           <TextField
             autoFocus

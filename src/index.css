@@ -2,7 +2,7 @@
 
 html{
   background-color: #bcc3eb;
-  min-width: 768px;
+  min-width: 300px;
 }
 
 h1, h2, h3{
@@ -39,4 +39,20 @@ code {
 
 button{
   font-family: 'Caveat', cursive;
+}
+
+
+@media screen and (max-width:600px){
+  h1{
+    font-size:25px;
+  }
+  h2{
+    font-size:22px;
+  }
+  h3{
+    font-size:20px;
+  }
+  p{
+    font-size:16px;
+  }
 }

@@ -6,7 +6,7 @@ function Footer(){
     const date=new Date();
 
     return(
-        <footer>
+        <footer className={styles.footer}>
             <p>Copyright &#169; {date.getFullYear()}. Created by Marko Vujnović</p>
         </footer>
     );

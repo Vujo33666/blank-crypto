@@ -11,3 +11,13 @@
 .main_container{
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
+
+@media screen and (max-width:600px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0px auto 50px;
+    }
+}
