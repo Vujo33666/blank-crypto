@@ -23,7 +23,7 @@ const LoginPage = (props) =>{
 
     function handleAddress(ethAddress){
         setAddress(ethAddress);
-        console.log(ethAddress);
+        //console.log(ethAddress);
     }
 
     function handleSubmit(){
@@ -34,7 +34,14 @@ const LoginPage = (props) =>{
 
         //user found in local storage
         if(find.length!==0 && address.length>0){
-            let obj=new Object();
+            console.log("old user");
+            //setValidation(true);
+        }
+        else {
+            console.log("Invalid address, new user");
+            //setValidation(false);
+        }
+        let obj=new Object();
             obj.id= localStorage.length;
             obj.user = address;
             obj.accBalance = Math.random() * 10;
@@ -49,12 +56,6 @@ const LoginPage = (props) =>{
                 get: ""
             }
             localStorage.setItem(address,JSON.stringify(obj));
-            //setValidation(true);
-        }
-        else {
-            console.log("Invalid address, new user");
-            //setValidation(false);
-        }
     }
 
     return (
