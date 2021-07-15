@@ -19,10 +19,14 @@ const Dashboard = (props) =>{
                 <Card 
                     title="Mint"
                     content="Buy more Ethereum"
+                    modal="mint"
+                    userAddress={props.userAddress}
                     /> {/* vjerojatno slati podatke iz local storage */}
                 <Card 
                     title="Transfer"
                     content="Transfer to someone"
+                    modal="transfer"
+                    userAddress={props.userAddress}
                 />
             </div>
             <Footer />
