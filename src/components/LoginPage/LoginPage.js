@@ -26,8 +26,8 @@ const LoginPage = (props) =>{
         console.log(ethAddress);
     }
 
-    /*function handleSubmit(){
-       /* let keys= Object.keys(localStorage);
+    function handleSubmit(){
+       let keys= Object.keys(localStorage);
         let find=keys.filter(key=>{
             return key===address
         });
@@ -49,13 +49,13 @@ const LoginPage = (props) =>{
                 get: ""
             }
             localStorage.setItem(address,JSON.stringify(obj));
-            setValidation(true);
+            //setValidation(true);
         }
         else {
-            console.log("Invalid address");
-            setValidation(false);
+            console.log("Invalid address, new user");
+            //setValidation(false);
         }
-    }*/
+    }
 
     return (
         <div className={styles.main_container}>
@@ -81,6 +81,7 @@ const LoginPage = (props) =>{
                     className={classes.root}
                     onClick={()=>{
                         props.handleAddress(address);
+                        handleSubmit();
                             auth.login(()=>{
                                 props.history.push("/dashboard");
                             });
