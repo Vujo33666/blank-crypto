@@ -23,28 +23,16 @@ export default function FormDialog(props) {
     setOpen(false);
   };
 
-  function addEthereum(){
-    let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
-    findUser.accBalance=parseFloat(findUser.accBalance);
-    findUser.accBalance+=balance;
-    console.log("finduser je " + findUser.accBalance);
-    console.log("balance je " + balance);
-    localStorage.setItem(props.userAddress, JSON.stringify(findUser));
-    setOpen(false);
-  }
-
-  function checkForNumbers(value){
+  function handleBalance (value){
     setBalance(value);
   }
 
-  /*function checkForNumbers(evt){
-    let charCode = (evt.which) ? evt.which : evt.keyCode;
-          if (charCode != 46 && charCode > 31 
-            && (charCode < 48 || charCode > 57))
-             return false;
-
-          return true;
-  }*/
+  function addEthereum(){
+    let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
+    findUser.accBalance = parseFloat(findUser.accBalance) + parseFloat(balance);
+    localStorage.setItem(props.userAddress, JSON.stringify(findUser));
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -56,23 +44,25 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title">Mint</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter the amount of Ethereum for buying.{props.userAddress}
+            Enter the amount of Ethereum for buying.
+            <br />
+            Account: {props.userAddress}
           </DialogContentText>
-          <NumericInput
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Decimal number"
-            type="number"
-            fullWidth
-            onChange={(e) => console.log(e.target.value)}
-            value={1}
-            name='example'
-            precision='8'
-            decimalSeparator=','
-            thousandSeparator='.'
-            variant='outlined'
-          />
+          <TextField 
+            type="number" 
+            required name="price"
+            InputProps={{
+                inputProps: { 
+                    max: 100, min: 0.00000001, step: 0.10000000
+                }
+            }}
+            id="outlined-basic"
+            label="Your address"
+            variant="outlined" 
+            value={balance}
+            onChange={(e) => handleBalance(e.target.value)}
+          >
+          </TextField>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

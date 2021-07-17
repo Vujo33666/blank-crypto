@@ -9,9 +9,11 @@ const Card = (props)=>{
 
     return(
         <div className={styles.card}
-            onClick={()=>
-                  props.explore.push("/explore")
-            }>
+            onClick={()=>{
+                if(props.explore){
+                    props.explore.push("/explore")
+                }
+            }}>
             <h1 className={styles.heading}>{props.title}</h1>
             <p className={styles.paragraph}>{props.content}</p>
             {props.explore ? 
