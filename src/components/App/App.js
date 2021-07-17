@@ -11,9 +11,8 @@ import auth from '../../auth';
 
 function App() {
 
-  const history=useHistory();
   const [authorize,setAuthorize] = useState(false);
-  const [address,setAddress] = useState("nista");
+  const [address,setAddress] = useState(Cookies.get('user'));
 
   /*function handleAuth(address){
     console.log(address)

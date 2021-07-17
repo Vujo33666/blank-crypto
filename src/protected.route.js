@@ -1,13 +1,14 @@
 import Cookies from "js-cookie";
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import auth from "./auth";
 
 const ProtectedRoute = ({component: Component, userAddress, ...rest}) =>{
     return(
         <Route {...rest} render={
             (props)=>{
-                if(Cookies.get('user')==="YouLoggedIn"){
+                if(auth.isAuthenticated){
+                    console.log("userAddress je : " + userAddress);
                     return <Component {...props} userAddress={userAddress}/>
                 }
                 else{

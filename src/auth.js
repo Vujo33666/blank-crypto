@@ -7,8 +7,7 @@ class Auth{
 
     login(cb){
         this.authenticated=true;
-        Cookies.set("user","YouLoggedIn");
-        console.log("postavljen cookie na loginpageu");
+        //Cookies.set("user","YouLoggedIn");
         cb();
     }
 
