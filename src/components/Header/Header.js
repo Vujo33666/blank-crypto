@@ -4,7 +4,6 @@ import styles from "./style.module.css";
 import auth from '../../auth';
 import LockIcon from '@material-ui/icons/Lock';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -19,14 +18,12 @@ function Header(props){
                 <h1>CryptoPro</h1>
             </div>
             {props.page==="dashboard" ?
-                <div className={styles.container}>
-                    <h2>Account: {props.userAddress}</h2>
-                        <LockIcon 
-                        className={styles.logout}
+                <div 
+                    className={styles.container}
                         onClick={()=>{
                             MySwal.fire({
                             title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
+                            text: "You want to log out?",
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
@@ -35,7 +32,7 @@ function Header(props){
                             }).then((result) => {
                             if (result.isConfirmed) {
                                 Swal.fire(
-                                'You logged out!',
+                                'You log out!',
                                 'Success'
                                 )
                                 auth.logout(()=>{
@@ -43,7 +40,12 @@ function Header(props){
                                 });
                             }
                         })
-                        }}>Logout
+                        }}
+                    >
+                    <h2>Account: {props.userAddress}</h2>
+                        <LockIcon 
+                        className={styles.logout}
+                        >Logout
                     </LockIcon> 
                 </div> :
                 <div className={styles.container}>

@@ -16,6 +16,7 @@ const Explore = (props) =>{
     const classes=useStyles();
     const [address,setAddress] = useState("");
     const [balance,setBalance] = useState(0);
+    const [ethValue,setEthValue] = useState(0);
 
     function handleAddress(value){
         setAddress(value);
@@ -25,6 +26,7 @@ const Explore = (props) =>{
         const getUser = JSON.parse(window.localStorage.getItem(user));
         if(getUser){
             setBalance(getUser.accBalance);
+            setEthValue(getUser.value);
         }
         else{
             setBalance(0);
@@ -56,7 +58,11 @@ const Explore = (props) =>{
                         handleBalance(address);
                         }}>Explore
                 </Button>
-                {balance ? <p>You have {balance.toFixed(8)} Ethereum coins</p> : <p>Enter an existing account</p>}
+                {balance ? 
+                    <div>
+                        <p>You have {balance.toFixed(8)} Ethereum coins</p>
+                        <p>Account worth in $: {ethValue.toFixed(2)}</p>
+                    </div> : <p>Enter an existing account</p>}
             </div>
             <Footer />
         </div>

@@ -8,16 +8,16 @@ import Transfer from "../Transfer/Demo";
 const Card = (props)=>{
 
     return(
-        <div className={styles.card}>
+        <div className={styles.card}
+            onClick={()=>
+                  props.explore.push("/explore")
+            }>
             <h1 className={styles.heading}>{props.title}</h1>
             <p className={styles.paragraph}>{props.content}</p>
             {props.explore ? 
                 <ExploreIcon
                     className={styles.button}
-                    onClick={()=>
-                        props.explore.push("/explore")
-                    }>
-                </ExploreIcon> :
+                ></ExploreIcon> :
                 (props.modal==="mint" ? <Mint userAddress={props.userAddress}/> : <Transfer userAddress={props.userAddress}/>)
             }
         </div>

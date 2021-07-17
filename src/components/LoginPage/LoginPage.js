@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 const LoginPage = (props) =>{
 
     const classes=useStyles();
-    const MySwal = withReactContent(Swal)
+    const MySwal = withReactContent(Swal);
     let keys= Object.keys(localStorage);
     const [address,setAddress] = useState("");
     const [validation,setValidation] = useState(false);
@@ -94,11 +94,10 @@ const LoginPage = (props) =>{
                             });
                         }else{
                             MySwal.fire({
-                            didOpen: () => {
-                                MySwal.clickConfirm()
-                            }
-                            }).then(() => {
-                                return MySwal.fire(<p>Invalid address, try again!</p>)
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Invalid address, try again!',
+                                //footer: '<a href="">Why do I have this issue?</a>',
                             })
                         }
                     }}
