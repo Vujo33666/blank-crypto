@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,12 +8,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
-import NumericInput from 'material-ui-numeric-input';
 
-export default function FormDialog(props) {
+export default function Transfer(props) {
 
   const [open, setOpen] = useState(false);
   const [balance,setBalance] = useState(0);
+  const [ethAddress,setEthAddress] = useState ("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,10 +27,32 @@ export default function FormDialog(props) {
     setBalance(value);
   }
 
-  function addEthereum(){
-    let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
-    findUser.accBalance = parseFloat(findUser.accBalance) + parseFloat(balance);
-    localStorage.setItem(props.userAddress, JSON.stringify(findUser));
+  function handleAddress (address){
+    setEthAddress(address);
+  }
+
+  function sendEthereum(){
+
+    let findReceiverUser = JSON.parse(window.localStorage.getItem(ethAddress));
+
+    if(findReceiverUser!==null){
+      findReceiverUser.accBalance = parseFloat(findReceiverUser.accBalance) + parseFloat(balance);
+      localStorage.setItem(ethAddress, JSON.stringify(findReceiverUser));
+    }else{
+      let obj=new Object();
+      obj.id= localStorage.length;
+      obj.user = ethAddress;
+      obj.accBalance = parseFloat(balance).toFixed(8);
+      //fixed ether price for now
+      obj.value=obj.accBalance * 1868.05;
+      obj.transactions=[];
+      localStorage.setItem(ethAddress,JSON.stringify(obj));
+    }
+
+
+    let findSenderUser = JSON.parse(window.localStorage.getItem(props.userAddress));
+    findSenderUser.accBalance = parseFloat(findSenderUser.accBalance) - parseFloat(balance);
+    localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
     setOpen(false);
   }
 
@@ -41,13 +63,20 @@ export default function FormDialog(props) {
         onClick={handleClickOpen}>
       </AddIcon>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Mint</DialogTitle>
+        <DialogTitle id="form-dialog-title">Transfer</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter the amount of Ethereum for buying.
-            <br />
-            Account: {props.userAddress}
+          Enter the amount of Ethereum for transfer and their address.
           </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Ethereum Address"
+            type="text"
+            fullWidth
+            onChange={(e) => handleAddress(e.target.value)}
+          />
           <TextField 
             type="number" 
             required name="price"
@@ -57,7 +86,7 @@ export default function FormDialog(props) {
                 }
             }}
             id="outlined-basic"
-            label="Your address"
+            label="Amount"
             variant="outlined" 
             value={balance}
             onChange={(e) => handleBalance(e.target.value)}
@@ -66,10 +95,10 @@ export default function FormDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            Back
           </Button>
-          <Button onClick={addEthereum} color="primary">
-            Mint
+          <Button onClick={sendEthereum} color="primary">
+            Transfer
           </Button>
         </DialogActions>
       </Dialog>

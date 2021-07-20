@@ -3,8 +3,8 @@ import React,{useState} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
 import ProtectedRoute from "../../protected.route";
 import LoginPage from '../LoginPage/LoginPage';
-import Dashboard from '../Dashboard/Dashboard';
-import Explore from '../Explore/Explore';
+import Dashboard from '../../pages/Dashboard/Dashboard';
+import Explore from '../../pages/Explore/Explore';
 import Cookies from 'js-cookie';
 import auth from '../../auth';
 

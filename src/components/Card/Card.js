@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./style.module.css";
 import ExploreIcon from '@material-ui/icons/Explore';
-import Mint from "../Mint/Demo";
-import Transfer from "../Transfer/Demo";
+import Mint from "../Mint/Mint";
+import Transfer from "../Transfer/Transfer";
 
 
 const Card = (props)=>{
@@ -22,7 +22,7 @@ const Card = (props)=>{
                 ></ExploreIcon> :
                 (props.modal==="mint" ? <Mint userAddress={props.userAddress}/> : <Transfer userAddress={props.userAddress}/>)
             }
-        </div>
+        </div> 
     );
 }
 

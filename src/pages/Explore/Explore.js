@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styles from "./style.module.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import {Button, TextField, makeStyles} from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -22,13 +22,21 @@ const Explore = (props) =>{
         setAddress(value);
     }
 
-    function handleBalance(user){
-        const getUser = JSON.parse(window.localStorage.getItem(user));
+    function handleBalance(){
+        const getUser = JSON.parse(window.localStorage.getItem(address));
         if(getUser){
             setBalance(getUser.accBalance);
             setEthValue(getUser.value);
         }
         else{
+            let obj=new Object();
+            obj.id= localStorage.length;
+            obj.user = address;
+            obj.accBalance = parseFloat(0).toFixed(8);
+            //fixed ether price for now
+            obj.value=parseFloat(0).toFixed(2);
+            obj.transactions=[];
+            localStorage.setItem(address,JSON.stringify(obj));
             setBalance(0);
         }
     }
@@ -55,14 +63,16 @@ const Explore = (props) =>{
                     color="primary"
                     className={classes.root}
                     onClick={()=>{
-                        handleBalance(address);
+                        handleBalance();
                         }}>Explore
                 </Button>
                 {balance ? 
                     <div>
                         <p>You have {balance.toFixed(8)} Ethereum coins</p>
                         <p>Account worth in $: {ethValue.toFixed(2)}</p>
-                    </div> : <p>Enter an existing account</p>}
+                    </div> : 
+                    <p>Enter an existing account</p>
+                }
             </div>
             <Footer />
         </div>
