@@ -29,6 +29,7 @@ export default function Mint(props) {
   function addEthereum(){
     let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
     findUser.accBalance = parseFloat(findUser.accBalance) + parseFloat(balance);
+    findUser.value=Number(findUser.accBalance)*1868.05;
     localStorage.setItem(props.userAddress, JSON.stringify(findUser));
     setOpen(false);
   }

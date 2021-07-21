@@ -13,3 +13,7 @@
     box-shadow: 0 0 1px 2px #c08d01;
     transition: all 300ms ease-out;
 }
+
+.sweetalert-modal{
+    z-index:1500;
+}

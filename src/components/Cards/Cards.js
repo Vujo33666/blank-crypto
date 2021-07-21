@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./style.module.css";
 import Card from "../Card/Card"
-import ExploreIcon from '@material-ui/icons/Explore';
-import Mint from "../Mint/Mint";
-import Transfer from "../Transfer/Transfer";
 
 
 const Cards = (props)=>{

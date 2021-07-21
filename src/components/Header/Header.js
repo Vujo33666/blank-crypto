@@ -4,8 +4,8 @@ import styles from "./style.module.css";
 import auth from '../../auth';
 import LockIcon from '@material-ui/icons/Lock';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function Header(props){
 

@@ -38,21 +38,6 @@ const LoginPage = (props) =>{
         else {
             console.log("Invalid address, address not found");
         }
-        /*let obj=new Object();
-            obj.id= localStorage.length;
-            obj.user = address;
-            obj.accBalance = Math.random() * 10;
-            //fixed ether price for now
-            obj.value=obj.accBalance * 1868.05;
-            obj.sendEther = {
-                to: "",
-                send: ""
-            }
-            obj.getEther={
-                from: "",
-                get: ""
-            }
-            localStorage.setItem(address,JSON.stringify(obj));*/
     }
 
     useEffect(()=>{

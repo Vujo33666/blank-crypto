@@ -36,6 +36,7 @@ const Explore = (props) =>{
             //fixed ether price for now
             obj.value=parseFloat(0).toFixed(2);
             obj.transactions=[];
+            obj.transactionsSent=[];
             localStorage.setItem(address,JSON.stringify(obj));
             setBalance(0);
         }
