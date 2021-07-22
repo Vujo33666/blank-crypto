@@ -8,7 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
-import FormControl from '@material-ui/core/FormControl';
+import { StylesProvider } from '@material-ui/core/styles';
+
 
 export default function Transfer(props) {
 
@@ -27,6 +28,8 @@ export default function Transfer(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setEthAddressError(false);
+    setBalanceError(false);
   };
 
   const handleSubmit = (event) =>{
@@ -68,7 +71,6 @@ export default function Transfer(props) {
     });
     localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
 
-    console.log(findSenderUser.transactionsSent)
   }
 
   function sendEthereum(){
@@ -96,7 +98,7 @@ export default function Transfer(props) {
   
       let findSenderUser = JSON.parse(window.localStorage.getItem(props.userAddress));
       findSenderUser.accBalance = parseFloat(findSenderUser.accBalance) - parseFloat(balance);
-      findSenderUser.value=Number(findReceiverUser.accBalance)*1868.05;
+      findSenderUser.value=Number(findSenderUser.accBalance)*1868.05;
       localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
       setOpen(false);
     }else{
@@ -110,6 +112,7 @@ export default function Transfer(props) {
 
   return (
     <div>
+    <StylesProvider injectFirst>
       <AddIcon
         className={styles.button}
         onClick={handleClickOpen}>
@@ -132,7 +135,9 @@ export default function Transfer(props) {
                 fullWidth
                 onChange={(e) => handleAddress(e.target.value)}
                 error={ethAddressError}
+                className={styles.text_field}
               />
+
               <TextField 
                 type="number" 
                 name="price"
@@ -154,7 +159,7 @@ export default function Transfer(props) {
               {transfer===false ? <p>You do not have enough Ether, check out your account balance!</p> : null}
           </DialogContent>
           <DialogActions>
-            <Button type="submit" onClick={handleClose} color="primary">
+            <Button onClick={handleClose} color="primary">
               Back
             </Button>
             <Button type="submit" onClick={handleSubmit} color="primary">
@@ -163,6 +168,7 @@ export default function Transfer(props) {
           </DialogActions>
         </form>
       </Dialog>
+      </StylesProvider>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import Mint from "../Mint/Mint";
 import Transfer from "../Transfer/Transfer";
 
-
 const Card = (props)=>{
 
     return(
@@ -20,7 +19,9 @@ const Card = (props)=>{
                 <ExploreIcon
                     className={styles.button}
                 ></ExploreIcon> :
-                (props.modal==="mint" ? <Mint userAddress={props.userAddress}/> : <Transfer userAddress={props.userAddress}/>)
+                (props.modal==="mint" ? 
+                    <Mint userAddress={props.userAddress}/> : 
+                    <Transfer userAddress={props.userAddress}/>)
             }
         </div> 
     );
