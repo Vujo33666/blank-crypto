@@ -36,11 +36,15 @@ export default function Mint(props) {
 
   return (
     <div>
-      <AddIcon
-        className={styles.button}
-        onClick={handleClickOpen}
-        >
-      </AddIcon>
+      <div className="card-container" onClick={handleClickOpen}>
+        <h1 className={styles.heading}>{props.title}</h1>
+        <p className={styles.paragraph}>{props.content}</p>
+        <AddIcon
+          className={styles.button}
+          onClick={handleClickOpen}
+          >
+        </AddIcon>
+      </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Mint</DialogTitle>
         <DialogContent>

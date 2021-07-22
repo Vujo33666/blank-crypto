@@ -22,3 +22,15 @@
 .text_field{
     margin-bottom:40px;
 }
+
+
+.heading {
+    font-size: 2em;
+    margin-bottom: 6px;
+}
+.paragraph {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
