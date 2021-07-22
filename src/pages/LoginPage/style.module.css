@@ -2,16 +2,10 @@
     color:white;
 }
 
-
-/*.circle{
-    z-index:-1;
-    width:100px;
-    height: auto;
-    border-radius: 50%;
-    position: absolute;
-    top:10px;
-    left:80px;
-}*/
+.button{
+    margin: 10px auto 10px;
+    text-transform: none;
+}
 
 .container{
     z-index: 1;
@@ -43,6 +37,5 @@
 }
 
 .fields{
-    width: 60%;
-    min-width:180px;
+    margin: 10px auto 10px;
 }

@@ -3,6 +3,11 @@
     color: #333;
 }
 
+.button{
+    margin: 10px auto 10px;
+    text-transform: none;
+}
+
 .container{
     display: flex;
     justify-content: center;
@@ -11,4 +16,8 @@
 
 .main_container{
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+}
+
+.fields{
+    margin: 10px auto 10px;
 }

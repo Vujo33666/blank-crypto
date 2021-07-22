@@ -1,12 +1,11 @@
 import './App.css';
 import React,{useState} from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ProtectedRoute from "../../protected.route";
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import Dashboard from '../../pages/Dashboard/Dashboard';
 import Explore from '../../pages/Explore/Explore';
 import Cookies from 'js-cookie';
-import auth from '../../auth';
 
 
 function App() {
