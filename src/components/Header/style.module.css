@@ -1,3 +1,7 @@
+.account{
+    font-size: 24px;
+}
+
 .container{
     display: flex;
     align-items: center;
@@ -35,4 +39,16 @@
     border-bottom: 2px solid white;
     background-color: #5390d9;
     border-radius:0px 0px 30px 30px;
+}
+
+@media screen and (max-width: 700px){
+    .header{
+        flex-wrap: wrap;
+    }
+    .container{
+        margin: 0px auto;
+    }
+    .logo{
+        margin: 10px auto;
+    }
 }

@@ -7,14 +7,12 @@ class Auth{
 
     login(cb){
         this.authenticated=true;
-        //Cookies.set("user","YouLoggedIn");
         cb();
     }
 
     logout(cb){
         this.authenticated=false;
-        Cookies.remove("user");
-        console.log("izbrisan cookie sa dashboarda");
+        Cookies.remove("address");
         cb();
     }
 

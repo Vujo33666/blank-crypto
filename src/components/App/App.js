@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 
 function App() {
 
-  const [address,setAddress] = useState(Cookies.get('user'));
+  const [address,setAddress] = useState(Cookies.get('address'));
 
   function handleAddress(loginAddress){
     setAddress(loginAddress);
