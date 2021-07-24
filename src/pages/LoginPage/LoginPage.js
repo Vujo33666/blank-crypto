@@ -41,7 +41,7 @@ const LoginPage = (props) =>{
         if(find.length!==0 && address.length>0){
             console.log("Old user");
         }
-        else {
+        else if(EtherAddressValidator()===true){
             console.log("New user");
             let obj=new Object();
             obj.id= localStorage.length;

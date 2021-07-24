@@ -180,7 +180,7 @@ export default function Transfer(props) {
               </TextField>
 
               {transfer===false ? <p>You do not have enough Ether, check out your account balance!</p> : null}
-              {addressTransfer ===false ? <p>Invalid ethereum addres!</p> : null}
+              {(addressTransfer === false && ethAddress.length > 0) ? <p>Invalid ethereum addres!</p> : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

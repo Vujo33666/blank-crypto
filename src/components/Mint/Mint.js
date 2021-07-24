@@ -64,7 +64,7 @@ export default function Mint(props) {
             id="outlined-basic"
             label="Amount"
             variant="outlined" 
-            value={balance}
+            value={balance || 0}
             onChange={(e) => handleBalance(e.target.value)}
           >
           </TextField>
