@@ -19,5 +19,19 @@
 }
 
 .fields{
-    margin: 10px auto 10px;
+    margin: 10px 20% 10px;
 }
+
+@media screen and (min-width: 1000px){
+    .fields{
+        margin: 10px 30% 10px;
+    }
+}
+
+@media screen and (max-width: 999px){
+    .fields{
+        margin: 10px auto 10px;
+        width: 400px;
+    }
+}
+

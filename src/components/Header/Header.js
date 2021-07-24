@@ -23,7 +23,7 @@ function Header(props){
                         onClick={()=>{
                             MySwal.fire({
                             title: 'Are you sure?',
-                            text: "You want to log out?",
+                            text: "You want to log out from\n" + props.userAddress + " ?",
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonText: 'Yes!'
@@ -40,7 +40,7 @@ function Header(props){
                         })
                         }}
                     >
-                    <h2>Account: {props.userAddress}</h2>
+                    <p className={styles.account}>Account: {props.userAddress}</p>
                         <LockIcon 
                         className={styles.logout}
                         >Logout

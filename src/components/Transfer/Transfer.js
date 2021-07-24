@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
 import { StylesProvider } from '@material-ui/core/styles';
+import WAValidator from "multicoin-address-validator";
 
 
 export default function Transfer(props) {
@@ -20,6 +21,7 @@ export default function Transfer(props) {
   const [balanceError,setBalanceError] = useState(false);
   const [ethAddressError,setEthAddressError] = useState(false);
   const [transfer,setTransfer] = useState(true);
+  const [addressTransfer, setAddressTransfer] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,7 +45,7 @@ export default function Transfer(props) {
     if(balance === ""){
       setBalanceError(true)
     }
-    if(ethAddress && balance){
+    if(ethAddress && EtherAddressValidator() && balance){
       sendEthereum();
     }
   }
@@ -72,6 +74,18 @@ export default function Transfer(props) {
     localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
 
   }
+
+  function EtherAddressValidator(){
+    let valid = WAValidator.validate(ethAddress, 'eth');
+    if(valid){
+        console.log('This is a valid address');
+        return true;
+    }
+    else{
+        console.log('Address INVALID');
+        return false;
+    }
+  } 
 
   function sendEthereum(){
 
@@ -110,10 +124,14 @@ export default function Transfer(props) {
     findSenderUser.accBalance >= balance ? setTransfer(true) : setTransfer(false);
 },[balance]);
 
+  useEffect(()=>{
+    EtherAddressValidator() ? setAddressTransfer(true) : setAddressTransfer(false);
+  },[ethAddress]);
+
   return (
     <div>
     <StylesProvider injectFirst>
-      <div className="card-container" onClick={handleClickOpen}>
+      <div onClick={handleClickOpen}>
         <h1 className={styles.heading}>{props.title}</h1>
         <p className={styles.paragraph}>{props.content}</p>
         <AddIcon
@@ -162,6 +180,7 @@ export default function Transfer(props) {
               </TextField>
 
               {transfer===false ? <p>You do not have enough Ether, check out your account balance!</p> : null}
+              {(addressTransfer === false && ethAddress.length > 0) ? <p>Invalid ethereum addres!</p> : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

@@ -8,6 +8,7 @@ import auth from '../../auth';
 import styles from './style.module.css'
 import Cookies from "js-cookie";
 import { StylesProvider } from "@material-ui/core/styles";
+import WAValidator from "multicoin-address-validator";
 
 const LoginPage = (props) =>{
 
@@ -20,24 +21,42 @@ const LoginPage = (props) =>{
         setAddress(ethAddress);
     }
 
+    function EtherAddressValidator(){
+        let valid = WAValidator.validate(address, 'eth');
+        if(valid){
+            console.log('This is a valid address');
+            return true;
+        }
+        else{
+            console.log('Address INVALID');
+            return false;
+        }
+    }
+
     function handleSubmit(){
         let find=keys.filter(key=>{
             return key===address
         });
         //user found in local storage
         if(find.length!==0 && address.length>0){
-            console.log("old user");
+            console.log("Old user");
         }
-        else {
-            console.log("Invalid address, address not found");
+        else if(EtherAddressValidator()===true){
+            console.log("New user");
+            let obj=new Object();
+            obj.id= localStorage.length;
+            obj.user = address;
+            obj.accBalance = Number(parseFloat(Math.random()*10).toFixed(8));
+            //fixed ether price for now
+            obj.value=obj.accBalance * 1868.05;
+            obj.transactions=[];
+            obj.transactionsSent=[];
+            localStorage.setItem(address,JSON.stringify(obj));
         }
     }
 
     useEffect(()=>{
-        let find=keys.filter(key=>{
-            return key===address
-        });
-        find.length>0 ? setValidation(true) : setValidation(false);
+        EtherAddressValidator() ? setValidation(true) : setValidation(false);
     },[address]);
 
     return (
@@ -67,7 +86,7 @@ const LoginPage = (props) =>{
                             handleSubmit();
                             if(validation){
                                 props.handleAddress(address);
-                                Cookies.set("user",address);
+                                Cookies.set("address",address);
                                 auth.login(()=>{
                                     props.history.push("/dashboard");
                                 });

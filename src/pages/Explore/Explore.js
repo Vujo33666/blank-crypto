@@ -1,9 +1,10 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import styles from "./style.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import {Button, TextField} from '@material-ui/core';
 import { StylesProvider } from '@material-ui/core/styles';
+import WAValidator from "multicoin-address-validator";
 
 const Explore = (props) =>{
 
@@ -21,19 +22,35 @@ const Explore = (props) =>{
             setBalance(getUser.accBalance);
             setEthValue(getUser.value);
         }
-        else{
+        else if(EtherAddressValidator()===true){
             let obj=new Object();
             obj.id= localStorage.length;
             obj.user = address;
-            obj.accBalance = parseFloat(0).toFixed(8);
+            obj.accBalance = Number(parseFloat(0).toFixed(8));
             //fixed ether price for now
-            obj.value=parseFloat(0).toFixed(2);
+            obj.value=Number(parseFloat(0).toFixed(2));
             obj.transactions=[];
             obj.transactionsSent=[];
             localStorage.setItem(address,JSON.stringify(obj));
             setBalance(0);
         }
     }
+
+    function EtherAddressValidator(){
+        let valid = WAValidator.validate(address, 'eth');
+        if(valid){
+            console.log('This is a valid address');
+            return true;
+        }
+        else{
+            console.log('Address INVALID');
+            return false;
+        }
+    }
+
+    useEffect(()=>{
+        EtherAddressValidator();
+    },[address]);
 
     return(
         <StylesProvider injectFirst>
