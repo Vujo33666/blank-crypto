@@ -7,7 +7,7 @@ const ProtectedRoute = ({component: Component, userAddress, ...rest}) =>{
     return(
         <Route {...rest} render={
             (props)=>{
-                if(auth.isAuthenticated){
+                if(Cookies.get("address")){
                     return <Component {...props} userAddress={userAddress}/>
                 }
                 else{
