@@ -13,17 +13,29 @@ export default function Mint(props) {
 
   const [open, setOpen] = useState(false);
   const [balance,setBalance] = useState(0);
+  const [balanceError,setBalanceError] = useState(false);
 
   const handleClickOpen = () => {
+    setBalance(0);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setBalanceError(false);
   };
 
   function handleBalance (value){
     setBalance(value);
+  }
+
+  function handleNumericInput(){
+    setBalanceError(false);
+    if(balance === ""){
+      setBalanceError(true);
+    }else{
+      addEthereum();
+    }
   }
 
   function addEthereum(){
@@ -64,8 +76,9 @@ export default function Mint(props) {
             id="outlined-basic"
             label="Amount"
             variant="outlined" 
-            value={balance || 0}
+            value={balance}
             onChange={(e) => handleBalance(e.target.value)}
+            error={balanceError}
           >
           </TextField>
         </DialogContent>
@@ -73,7 +86,7 @@ export default function Mint(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={addEthereum} color="primary">
+          <Button onClick={handleNumericInput} color="primary">
             Mint
           </Button>
         </DialogActions>
