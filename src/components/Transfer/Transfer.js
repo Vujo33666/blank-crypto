@@ -120,9 +120,9 @@ export default function Transfer(props) {
     }
   }
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     findSenderUser.accBalance >= balance ? setTransfer(true) : setTransfer(false);
-},[balance]);
+},[balance]);*/
 
   useEffect(()=>{
     EtherAddressValidator() ? setAddressTransfer(true) : setAddressTransfer(false);

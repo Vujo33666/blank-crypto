@@ -8,12 +8,30 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
+import Web3 from "web3";
+import {addressEthereum, abi} from "../../connect_data";
 
 export default function Mint(props) {
 
   const [open, setOpen] = useState(false);
-  const [balance,setBalance] = useState(0);
   const [balanceError,setBalanceError] = useState(false);
+  const [mintingAmount,setMintingAmount] = useState(0);
+  const [balance,setBalance] = useState(0);
+    const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
+    let contract = new web3.eth.Contract(abi,addressEthereum);
+    let result;
+    
+    if(contract){
+        contract.methods.getBalance().call().then(bal => {result = bal});
+    }
+    
+    function handleBalance(){
+        setBalance(result);
+    }
+
+    function handleMintingAmount(value){
+      setMintingAmount(value);
+    }
 
   const handleClickOpen = () => {
     setBalance(0);
@@ -25,9 +43,6 @@ export default function Mint(props) {
     setBalanceError(false);
   };
 
-  function handleBalance (value){
-    setBalance(value);
-  }
 
   function handleNumericInput(){
     setBalanceError(false);
@@ -39,10 +54,8 @@ export default function Mint(props) {
   }
 
   function addEthereum(){
-    let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
-    findUser.accBalance = parseFloat(findUser.accBalance) + parseFloat(balance);
-    findUser.value=Number(findUser.accBalance)*1868.05;
-    localStorage.setItem(props.userAddress, JSON.stringify(findUser));
+    contract.methods.deposit(mintingAmount).send({from: window.ethereum.selectedAddress});
+    handleBalance();
     setOpen(false);
   }
 
@@ -76,8 +89,8 @@ export default function Mint(props) {
             id="outlined-basic"
             label="Amount"
             variant="outlined" 
-            value={balance}
-            onChange={(e) => handleBalance(e.target.value)}
+            value={mintingAmount}
+            onChange={(e) => handleMintingAmount(e.target.value)}
             error={balanceError}
           >
           </TextField>

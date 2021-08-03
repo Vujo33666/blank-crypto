@@ -4,8 +4,10 @@ import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
+
 ReactDOM.render(
-    <App />,
+    <App />
+  ,
   document.getElementById('root')
 );
 

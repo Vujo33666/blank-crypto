@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@truffle/hdwallet-provider": "^1.4.2",
     "js-cookie": "^2.2.1",
     "multicoin-address-validator": "^0.5.2",
     "openzeppelin-solidity": "^4.2.0",
@@ -19,7 +20,8 @@
     "solc": "^0.8.6",
     "sweetalert2": "^11.0.18",
     "sweetalert2-react-content": "^4.1.0",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "web3": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

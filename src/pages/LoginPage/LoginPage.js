@@ -8,56 +8,78 @@ import auth from '../../auth';
 import styles from './style.module.css'
 import Cookies from "js-cookie";
 import { StylesProvider } from "@material-ui/core/styles";
-import WAValidator from "multicoin-address-validator";
+import Web3 from "web3";
+import {addressEthereum, abi} from "../../connect_data";
 
 const LoginPage = (props) =>{
 
     const MySwal = withReactContent(Swal);
     let keys= Object.keys(localStorage);
-    const [address,setAddress] = useState("");
     const [validation,setValidation] = useState(false);
+    const [addrEther,setAddrEther]=useState("");
+    const ethereum = window.ethereum;
 
-    function handleAddress(ethAddress){
-        setAddress(ethAddress);
+    if(ethereum){
+        ethereum.on("accountsChanged",(accounts)=>{
+            setAddrEther(accounts[0]);
+        })
     }
 
-    function EtherAddressValidator(){
-        let valid = WAValidator.validate(address, 'eth');
-        if(valid){
-            console.log('This is a valid address');
-            return true;
-        }
-        else{
-            console.log('Address INVALID');
-            return false;
-        }
-    }
+    useEffect(()=>{
+        ethereum ? setValidation(true) : setValidation(false);
+        ethereum && setAddrEther(window.ethereum.selectedAddress);
+    },[]);
 
-    function handleSubmit(){
+    /*let web3 = new Web3(new Web);
+    if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+        // web3 = new Web3(web3.currentProvider);
+      }else{
+          console.log("Install MetaMask!!!");
+         //web3 = new Web3("http://localhost:3000/");
+      }
+
+
+    let contract = new web3.eth.Contract(abi,addressEthereum);
+    console.log(contract.methods.name().call());*/
+
+
+
+    /*contract.methods.getBalance().call().then(balance=>{
+        console.log(balance);
+    });
+    web3.eth.getAccounts().then((accounts)=>{
+        let acc=addressEthereum;
+        console.log("Accoutn " + acc);
+        return contract.methods.deposit(16).send({from: acc});
+    }).then((data)=>{
+        console.log("data je " + data);
+    }).catch((text)=>{
+        console.log("Cathceani text je " + text);
+    })*/
+
+
+    /*function handleSubmit(){
         let find=keys.filter(key=>{
-            return key===address
+            return key===addrEther
         });
         //user found in local storage
-        if(find.length!==0 && address.length>0){
+        if(find.length!==0 && addrEther.length>0){
             console.log("Old user");
         }
-        else if(EtherAddressValidator()===true){
+        else{
             console.log("New user");
             let obj=new Object();
             obj.id= localStorage.length;
-            obj.user = address;
+            obj.user = addrEther;
             obj.accBalance = Number(parseFloat(Math.random()*10).toFixed(8));
             //fixed ether price for now
             obj.value=obj.accBalance * 1868.05;
             obj.transactions=[];
             obj.transactionsSent=[];
-            localStorage.setItem(address,JSON.stringify(obj));
+            localStorage.setItem(addrEther,JSON.stringify(obj));
         }
-    }
-
-    useEffect(()=>{
-        EtherAddressValidator() ? setValidation(true) : setValidation(false);
-    },[address]);
+    }*/
 
     return (
         <StylesProvider injectFirst>
@@ -66,27 +88,15 @@ const LoginPage = (props) =>{
                 <div className={styles.container}>
                     <img src={logo} className={styles.logo} alt="logo" />
                     <h2 className={styles.heading}>Login</h2>
-                    <TextField
-                        required
-                        id="outlined-basic"
-                        label="Your address"
-                        variant="outlined"
-                        className={styles.fields}
-                        name="address"
-                        type="text"
-                        value={address}
-                        onChange={(event)=>handleAddress(event.target.value)}>
-                    </TextField>
-                    {address ?
                         <Button
                         variant="contained"
                         color="primary"
                         className={styles.button}
                         onClick={()=>{
-                            handleSubmit();
                             if(validation){
-                                props.handleAddress(address);
-                                Cookies.set("address",address);
+                                console.log("avlida" + validation)
+                                props.handleAddress(addrEther);
+                                Cookies.set("address",addrEther);
                                 auth.login(()=>{
                                     props.history.push("/dashboard");
                                 });
@@ -94,15 +104,12 @@ const LoginPage = (props) =>{
                                 MySwal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
-                                    text: 'Invalid address, try again!',
+                                    text: 'Install MetaMask extension!',
                                 })
                             }
                         }}
-                        >Sign in
+                        >Sign in with MetaMask
                     </Button>
-                    : <p>Enter your address</p>
-                    }
-                    
                 </div>
             </div>
         </StylesProvider>
