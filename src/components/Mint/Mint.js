@@ -10,6 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
 import Web3 from "web3";
 import {addressEthereum, abi} from "../../connect_data";
+const MyContract = require("./../../contracts/build/contracts/VujoBank.json");
 
 export default function Mint(props) {
 
@@ -17,9 +18,11 @@ export default function Mint(props) {
   const [balanceError,setBalanceError] = useState(false);
   const [mintingAmount,setMintingAmount] = useState(0);
   const [balance,setBalance] = useState(0);
-    const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-    let contract = new web3.eth.Contract(abi,addressEthereum);
-    let result;
+
+  const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
+  const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
+  const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+  let result;
     
     if(contract){
         contract.methods.getBalance().call().then(bal => {result = bal});
@@ -54,7 +57,11 @@ export default function Mint(props) {
   }
 
   function addEthereum(){
-    contract.methods.deposit(mintingAmount).send({from: window.ethereum.selectedAddress});
+    contract.methods.deposit(
+      web3.utils.toWei(mintingAmount),"ether")
+      .send({
+        from: window.ethereum.selectedAddress
+      });
     handleBalance();
     setOpen(false);
   }

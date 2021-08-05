@@ -10,6 +10,8 @@ import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
 import { StylesProvider } from '@material-ui/core/styles';
 import WAValidator from "multicoin-address-validator";
+import Web3 from "web3";
+const MyContract = require("./../../contracts/build/contracts/VujoBank.json");
 
 
 export default function Transfer(props) {
@@ -22,6 +24,16 @@ export default function Transfer(props) {
   const [ethAddressError,setEthAddressError] = useState(false);
   const [transfer,setTransfer] = useState(true);
   const [addressTransfer, setAddressTransfer] = useState(false);
+
+  let result;
+
+  const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
+  const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
+  const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+  
+  if(contract){
+      contract.methods.getBalance().call().then(bal => {result = bal});
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,7 +70,7 @@ export default function Transfer(props) {
     setEthAddress(address);
   }
 
-  function transactionLogic(receiver){
+  /*function transactionLogic(receiver){
 
     receiver.transactions.push({
       id: receiver.transactions.length,
@@ -73,7 +85,7 @@ export default function Transfer(props) {
     });
     localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
 
-  }
+  }*/
 
   function EtherAddressValidator(){
     let valid = WAValidator.validate(ethAddress, 'eth');
@@ -85,11 +97,36 @@ export default function Transfer(props) {
         console.log('Address INVALID');
         return false;
     }
-  } 
+  }
 
-  function sendEthereum(){
+  async function getAddresses(){
+    let addresses = await web3.eth.getAccounts();
+    console.log(addresses);
+  }
+  getAddresses();
 
-    if(transfer===true){
+  async function sendEthereum(){
+    await web3.eth.sendTransaction({
+      from: window.ethereum.selectedAddress,
+      to: ethAddress,
+      value: web3.utils.toWei(balance,"ether")
+    });
+
+  /* SLANJE PREMA CONTRACTU - depozit ili minting
+  console.log("ADRESA : " + window.ethereum.selectedAddress)
+  contract.methods.transferEther(balance).send({
+    from: window.ethereum.selectedAddress,
+  })
+  .then(receipt=>{
+    console.log("poslano od: " + receipt.from);
+    console.log("adresa contract-a: " + receipt.to);
+    console.log("RECEIPT");
+    console.log(receipt);
+  });*/
+
+  setOpen(false);
+
+    /*if(transfer===true){
       let findReceiverUser = JSON.parse(window.localStorage.getItem(ethAddress));
 
       if(findReceiverUser!==null){
@@ -117,7 +154,8 @@ export default function Transfer(props) {
       setOpen(false);
     }else{
       setOpen(true);
-    }
+    } */
+
   }
 
   /*useEffect(()=>{

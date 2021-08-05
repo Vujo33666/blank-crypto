@@ -8,21 +8,18 @@ import auth from '../../auth';
 import styles from './style.module.css'
 import Cookies from "js-cookie";
 import { StylesProvider } from "@material-ui/core/styles";
-import Web3 from "web3";
-import {addressEthereum, abi} from "../../connect_data";
 
 const LoginPage = (props) =>{
 
     const MySwal = withReactContent(Swal);
-    let keys= Object.keys(localStorage);
     const [validation,setValidation] = useState(false);
     const [addrEther,setAddrEther]=useState("");
-    const ethereum = window.ethereum;
 
+    const ethereum = window.ethereum;
     if(ethereum){
         ethereum.on("accountsChanged",(accounts)=>{
             setAddrEther(accounts[0]);
-        })
+        });
     }
 
     useEffect(()=>{
@@ -94,8 +91,7 @@ const LoginPage = (props) =>{
                         className={styles.button}
                         onClick={()=>{
                             if(validation){
-                                console.log("avlida" + validation)
-                                props.handleAddress(addrEther);
+                                //props.handleAddress(addrEther);
                                 Cookies.set("address",addrEther);
                                 auth.login(()=>{
                                     props.history.push("/dashboard");
@@ -104,7 +100,7 @@ const LoginPage = (props) =>{
                                 MySwal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
-                                    text: 'Install MetaMask extension!',
+                                    text: 'Install MetaMask extension for your browser!',
                                 })
                             }
                         }}

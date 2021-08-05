@@ -14,13 +14,21 @@ function App() {
 
   function handleAddress(loginAddress){
     setAddress(loginAddress);
+    console.log("adresa: " + address);
   }
+
+  if(window.ethereum){
+    window.ethereum.on("accountsChanged",(accounts)=>{
+        handleAddress(accounts[0]);
+        Cookies.set("address",accounts[0]);
+    });
+}
 
   return (
     <div className="App">
       <Router>
         <Switch>
-            <Route exact path ="/" render={props=>(<LoginPage {...props} handleAddress={handleAddress}/>)}/>
+            <Route exact path ="/" render={props=>(<LoginPage {...props} /*handleAddress={handleAddress}*//>)}/>
             <ProtectedRoute exact path="/explore" component={Explore}/>
             <ProtectedRoute path ="*" component={Dashboard} userAddress={address}/>
         </Switch>

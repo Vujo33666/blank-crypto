@@ -7,21 +7,28 @@ import { StylesProvider } from '@material-ui/core/styles';
 import Cookies from "js-cookie";
 import Web3 from "web3";
 import {addressEthereum, abi} from "../../connect_data";
+const MyContract = require("./../../contracts/build/contracts/VujoBank.json");
 
 const Explore = (props) =>{
 
     const address=Cookies.get("address");
     const [balance,setBalance] = useState(0);
+    const [paragraph,setParagraph] = useState(false);
+ 
+
+    const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-    let contract = new web3.eth.Contract(abi,addressEthereum);
-    let result;
+    const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
     
     if(contract){
-        contract.methods.getBalance().call().then(bal => {result = bal});
+       // contract.methods.getBalance().call().then(bal => {result = bal});
     }
     
-    function handleBalance(){
+    let result;
+    async function handleBalance(){
+        result = web3.utils.fromWei(await web3.eth.getBalance(address),"ether");
         setBalance(result);
+        setParagraph(true);
     }
 
 
@@ -41,8 +48,13 @@ const Explore = (props) =>{
                         }}>Explore
                 </Button> 
                 <div>
-                    <p>You have {balance} Ethereum coins</p>
-                    <p>Account worth in $: {(balance * 1868.05).toFixed(2)}</p>
+                {paragraph ? 
+                    <div>
+                        <p>You have {balance} Ethereum coins</p>
+                        <p>Account worth in $: {(balance * 1868.05).toFixed(2)}</p>
+                    </div> :
+                    null
+                }
                 </div>
             </div>
             <Footer />

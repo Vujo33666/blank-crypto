@@ -19,6 +19,10 @@ contract VujoBank{
     function deposit(int amount) public{
         balance= balance+amount;
     }
+
+    function transferEther(int amount) public{
+        balance=amount;
+    }
     
     
 }

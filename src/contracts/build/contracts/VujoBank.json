@@ -45,11 +45,24 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int256",
+          "name": "amount",
+          "type": "int256"
+        }
+      ],
+      "name": "transferEther",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.1+commit.df193b15\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/VujoBank.sol\":\"VujoBank\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/VujoBank.sol\":{\"keccak256\":\"0x9a3b67ec5417daab654bf1f9203bfdf9ba1961e9e2007ab1571c1f7213dcd713\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://98163d11bdc22bf92a3e09e6484c403b2ce45f9be43fd4592f6c9306bc797f8f\",\"dweb:/ipfs/QmW7i7rSgWJzHz7QRUZoVpgU38ioYeFX6xFmuGK5wC4pye\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50609c6000819055506102e9806100286000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806312065fe0146100465780637e62eab814610064578063f04991f014610080575b600080fd5b61004e61009c565b60405161005b9190610120565b60405180910390f35b61007e600480360381019061007991906100e8565b6100a5565b005b61009a600480360381019061009591906100e8565b6100bc565b005b60008054905090565b806000546100b391906101cf565b60008190555050565b806000546100ca919061013b565b60008190555050565b6000813590506100e28161029c565b92915050565b6000602082840312156100fa57600080fd5b6000610108848285016100d3565b91505092915050565b61011a81610263565b82525050565b60006020820190506101356000830184610111565b92915050565b600061014682610263565b915061015183610263565b9250817f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0383136000831215161561018c5761018b61026d565b5b817f80000000000000000000000000000000000000000000000000000000000000000383126000831216156101c4576101c361026d565b5b828201905092915050565b60006101da82610263565b91506101e583610263565b9250827f8000000000000000000000000000000000000000000000000000000000000000018212600084121516156102205761021f61026d565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0182136000841216156102585761025761026d565b5b828203905092915050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6102a581610263565b81146102b057600080fd5b5056fea26469706673582212209af9bc5a5b7da7aadc0e7238a172dbec31c54ebf5cdf723a6f32fdfd5d122a1364736f6c63430008010033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806312065fe0146100465780637e62eab814610064578063f04991f014610080575b600080fd5b61004e61009c565b60405161005b9190610120565b60405180910390f35b61007e600480360381019061007991906100e8565b6100a5565b005b61009a600480360381019061009591906100e8565b6100bc565b005b60008054905090565b806000546100b391906101cf565b60008190555050565b806000546100ca919061013b565b60008190555050565b6000813590506100e28161029c565b92915050565b6000602082840312156100fa57600080fd5b6000610108848285016100d3565b91505092915050565b61011a81610263565b82525050565b60006020820190506101356000830184610111565b92915050565b600061014682610263565b915061015183610263565b9250817f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0383136000831215161561018c5761018b61026d565b5b817f80000000000000000000000000000000000000000000000000000000000000000383126000831216156101c4576101c361026d565b5b828201905092915050565b60006101da82610263565b91506101e583610263565b9250827f8000000000000000000000000000000000000000000000000000000000000000018212600084121516156102205761021f61026d565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0182136000841216156102585761025761026d565b5b828203905092915050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6102a581610263565b81146102b057600080fd5b5056fea26469706673582212209af9bc5a5b7da7aadc0e7238a172dbec31c54ebf5cdf723a6f32fdfd5d122a1364736f6c63430008010033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.1+commit.df193b15\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"transferEther\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/VujoBank.sol\":\"VujoBank\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/VujoBank.sol\":{\"keccak256\":\"0x29e6bc1062680a052f170ced128ba524b60ec8318200bfe6310762fa142e13b1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c3045ef2fbd46345f73661e7a624124eeb97e0472c0d6fb248d81968095b6624\",\"dweb:/ipfs/Qmd2QkDiwnnNxCe6WqqnQKSWRUxusb6a8KUkd51wT43WaX\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50609c60008190555061031a806100286000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c806312065fe0146100515780637e62eab81461006f578063c2f3e6001461008b578063f04991f0146100a7575b600080fd5b6100596100c3565b6040516100669190610151565b60405180910390f35b61008960048036038101906100849190610119565b6100cc565b005b6100a560048036038101906100a09190610119565b6100e3565b005b6100c160048036038101906100bc9190610119565b6100ed565b005b60008054905090565b806000546100da9190610200565b60008190555050565b8060008190555050565b806000546100fb919061016c565b60008190555050565b600081359050610113816102cd565b92915050565b60006020828403121561012b57600080fd5b600061013984828501610104565b91505092915050565b61014b81610294565b82525050565b60006020820190506101666000830184610142565b92915050565b600061017782610294565b915061018283610294565b9250817f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff038313600083121516156101bd576101bc61029e565b5b817f80000000000000000000000000000000000000000000000000000000000000000383126000831216156101f5576101f461029e565b5b828201905092915050565b600061020b82610294565b915061021683610294565b9250827f8000000000000000000000000000000000000000000000000000000000000000018212600084121516156102515761025061029e565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0182136000841216156102895761028861029e565b5b828203905092915050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6102d681610294565b81146102e157600080fd5b5056fea2646970667358221220a117c2bf1e980277ed2dae0baefb055542ce0c4fab2d4b812360b3930c9914d264736f6c63430008010033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c806312065fe0146100515780637e62eab81461006f578063c2f3e6001461008b578063f04991f0146100a7575b600080fd5b6100596100c3565b6040516100669190610151565b60405180910390f35b61008960048036038101906100849190610119565b6100cc565b005b6100a560048036038101906100a09190610119565b6100e3565b005b6100c160048036038101906100bc9190610119565b6100ed565b005b60008054905090565b806000546100da9190610200565b60008190555050565b8060008190555050565b806000546100fb919061016c565b60008190555050565b600081359050610113816102cd565b92915050565b60006020828403121561012b57600080fd5b600061013984828501610104565b91505092915050565b61014b81610294565b82525050565b60006020820190506101666000830184610142565b92915050565b600061017782610294565b915061018283610294565b9250817f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff038313600083121516156101bd576101bc61029e565b5b817f80000000000000000000000000000000000000000000000000000000000000000383126000831216156101f5576101f461029e565b5b828201905092915050565b600061020b82610294565b915061021683610294565b9250827f8000000000000000000000000000000000000000000000000000000000000000018212600084121516156102515761025061029e565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0182136000841216156102895761028861029e565b5b828203905092915050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6102d681610294565b81146102e157600080fd5b5056fea2646970667358221220a117c2bf1e980277ed2dae0baefb055542ce0c4fab2d4b812360b3930c9914d264736f6c63430008010033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [
@@ -1391,18 +1404,18 @@
       "name": "#utility.yul"
     }
   ],
-  "sourceMap": "59:375:5:-:0;;;107:43;;;;;;;;;;139:3;131:7;:11;;;;59:375;;;;;;",
-  "deployedSourceMap": "59:375:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;162:79;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;253:77;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;342;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;162:79;204:3;226:7;;219:14;;162:79;:::o;253:77::-;316:6;308:7;;:14;;;;:::i;:::-;300:7;:22;;;;253:77;:::o;342:::-;405:6;397:7;;:14;;;;:::i;:::-;388:7;:23;;;;342:77;:::o;7:137:6:-;;90:6;77:20;68:29;;106:32;132:5;106:32;:::i;:::-;58:86;;;;:::o;150:260::-;;257:2;245:9;236:7;232:23;228:32;225:2;;;273:1;270;263:12;225:2;316:1;341:52;385:7;376:6;365:9;361:22;341:52;:::i;:::-;331:62;;287:116;215:195;;;;:::o;416:115::-;501:23;518:5;501:23;:::i;:::-;496:3;489:36;479:52;;:::o;537:218::-;;666:2;655:9;651:18;643:26;;679:69;745:1;734:9;730:17;721:6;679:69;:::i;:::-;633:122;;;;:::o;761:525::-;;819:19;836:1;819:19;:::i;:::-;814:24;;852:19;869:1;852:19;:::i;:::-;847:24;;1040:1;972:66;968:74;965:1;961:82;956:1;953;949:9;942:17;938:106;935:2;;;1047:18;;:::i;:::-;935:2;1227:1;1159:66;1155:74;1152:1;1148:82;1144:1;1141;1137:9;1133:98;1130:2;;;1234:18;;:::i;:::-;1130:2;1278:1;1275;1271:9;1264:16;;804:482;;;;:::o;1292:527::-;;1351:19;1368:1;1351:19;:::i;:::-;1346:24;;1384:19;1401:1;1384:19;:::i;:::-;1379:24;;1573:1;1505:66;1501:74;1498:1;1494:82;1489:1;1486;1482:9;1475:17;1471:106;1468:2;;;1580:18;;:::i;:::-;1468:2;1759:1;1691:66;1687:74;1684:1;1680:82;1676:1;1673;1669:9;1665:98;1662:2;;;1766:18;;:::i;:::-;1662:2;1811:1;1808;1804:9;1796:17;;1336:483;;;;:::o;1825:76::-;;1890:5;1879:16;;1869:32;;;:::o;1907:180::-;1955:77;1952:1;1945:88;2052:4;2049:1;2042:15;2076:4;2073:1;2066:15;2093:120;2165:23;2182:5;2165:23;:::i;:::-;2158:5;2155:34;2145:2;;2203:1;2200;2193:12;2145:2;2135:78;:::o",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity 0.8.1;\r\n\r\ncontract VujoBank{\r\n    int balance;\r\n    \r\n    constructor(){\r\n        balance=156;\r\n    }\r\n    \r\n    function getBalance() view public returns(int){\r\n        return balance;\r\n    }\r\n    \r\n    function withdraw(int amount) public{\r\n        balance=balance-amount;\r\n    }\r\n    \r\n    function deposit(int amount) public{\r\n        balance= balance+amount;\r\n    }\r\n    \r\n    \r\n}\r\n",
+  "sourceMap": "59:457:5:-:0;;;107:43;;;;;;;;;;139:3;131:7;:11;;;;59:457;;;;;;",
+  "deployedSourceMap": "59:457:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;162:79;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;253:77;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;427:74;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;342:77;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;162:79;204:3;226:7;;219:14;;162:79;:::o;253:77::-;316:6;308:7;;:14;;;;:::i;:::-;300:7;:22;;;;253:77;:::o;427:74::-;487:6;479:7;:14;;;;427:74;:::o;342:77::-;405:6;397:7;;:14;;;;:::i;:::-;388:7;:23;;;;342:77;:::o;7:137:6:-;;90:6;77:20;68:29;;106:32;132:5;106:32;:::i;:::-;58:86;;;;:::o;150:260::-;;257:2;245:9;236:7;232:23;228:32;225:2;;;273:1;270;263:12;225:2;316:1;341:52;385:7;376:6;365:9;361:22;341:52;:::i;:::-;331:62;;287:116;215:195;;;;:::o;416:115::-;501:23;518:5;501:23;:::i;:::-;496:3;489:36;479:52;;:::o;537:218::-;;666:2;655:9;651:18;643:26;;679:69;745:1;734:9;730:17;721:6;679:69;:::i;:::-;633:122;;;;:::o;761:525::-;;819:19;836:1;819:19;:::i;:::-;814:24;;852:19;869:1;852:19;:::i;:::-;847:24;;1040:1;972:66;968:74;965:1;961:82;956:1;953;949:9;942:17;938:106;935:2;;;1047:18;;:::i;:::-;935:2;1227:1;1159:66;1155:74;1152:1;1148:82;1144:1;1141;1137:9;1133:98;1130:2;;;1234:18;;:::i;:::-;1130:2;1278:1;1275;1271:9;1264:16;;804:482;;;;:::o;1292:527::-;;1351:19;1368:1;1351:19;:::i;:::-;1346:24;;1384:19;1401:1;1384:19;:::i;:::-;1379:24;;1573:1;1505:66;1501:74;1498:1;1494:82;1489:1;1486;1482:9;1475:17;1471:106;1468:2;;;1580:18;;:::i;:::-;1468:2;1759:1;1691:66;1687:74;1684:1;1680:82;1676:1;1673;1669:9;1665:98;1662:2;;;1766:18;;:::i;:::-;1662:2;1811:1;1808;1804:9;1796:17;;1336:483;;;;:::o;1825:76::-;;1890:5;1879:16;;1869:32;;;:::o;1907:180::-;1955:77;1952:1;1945:88;2052:4;2049:1;2042:15;2076:4;2073:1;2066:15;2093:120;2165:23;2182:5;2165:23;:::i;:::-;2158:5;2155:34;2145:2;;2203:1;2200;2193:12;2145:2;2135:78;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity 0.8.1;\r\n\r\ncontract VujoBank{\r\n    int balance;\r\n    \r\n    constructor(){\r\n        balance=156;\r\n    }\r\n    \r\n    function getBalance() view public returns(int){\r\n        return balance;\r\n    }\r\n    \r\n    function withdraw(int amount) public{\r\n        balance=balance-amount;\r\n    }\r\n    \r\n    function deposit(int amount) public{\r\n        balance= balance+amount;\r\n    }\r\n\r\n    function transferEther(int amount) public{\r\n        balance=amount;\r\n    }\r\n    \r\n    \r\n}\r\n",
   "sourcePath": "C:\\Users\\MavenMule\\Desktop\\Blank React\\blank-crypto\\src\\contracts\\contracts\\VujoBank.sol",
   "ast": {
     "absolutePath": "project:/contracts/VujoBank.sol",
     "exportedSymbols": {
       "VujoBank": [
-        746
+        756
       ]
     },
-    "id": 747,
+    "id": 757,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -1422,9 +1435,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 746,
+        "id": 756,
         "linearizedBaseContracts": [
-          746
+          756
         ],
         "name": "VujoBank",
         "nodeType": "ContractDefinition",
@@ -1435,7 +1448,7 @@
             "mutability": "mutable",
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 746,
+            "scope": 756,
             "src": "83:11:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1528,7 +1541,7 @@
               "parameters": [],
               "src": "120:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "107:43:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1606,7 +1619,7 @@
               ],
               "src": "203:5:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "162:79:5",
             "stateMutability": "view",
             "virtual": false,
@@ -1739,7 +1752,7 @@
               "parameters": [],
               "src": "289:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "253:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1872,27 +1885,130 @@
               "parameters": [],
               "src": "377:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "342:77:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 754,
+              "nodeType": "Block",
+              "src": "468:33:5",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 750,
+                      "name": "balance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 705,
+                      "src": "479:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 751,
+                      "name": "amount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 747,
+                      "src": "487:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      }
+                    },
+                    "src": "479:14:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "id": 753,
+                  "nodeType": "ExpressionStatement",
+                  "src": "479:14:5"
+                }
+              ]
+            },
+            "functionSelector": "c2f3e600",
+            "id": 755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferEther",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 748,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 747,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 755,
+                  "src": "450:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 746,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "450:3:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "449:12:5"
+            },
+            "returnParameters": {
+              "id": 749,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "468:0:5"
+            },
+            "scope": 756,
+            "src": "427:74:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 747,
-        "src": "59:375:5"
+        "scope": 757,
+        "src": "59:457:5"
       }
     ],
-    "src": "33:403:5"
+    "src": "33:485:5"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/VujoBank.sol",
     "exportedSymbols": {
       "VujoBank": [
-        746
+        756
       ]
     },
-    "id": 747,
+    "id": 757,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -1912,9 +2028,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 746,
+        "id": 756,
         "linearizedBaseContracts": [
-          746
+          756
         ],
         "name": "VujoBank",
         "nodeType": "ContractDefinition",
@@ -1925,7 +2041,7 @@
             "mutability": "mutable",
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 746,
+            "scope": 756,
             "src": "83:11:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2018,7 +2134,7 @@
               "parameters": [],
               "src": "120:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "107:43:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2096,7 +2212,7 @@
               ],
               "src": "203:5:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "162:79:5",
             "stateMutability": "view",
             "virtual": false,
@@ -2229,7 +2345,7 @@
               "parameters": [],
               "src": "289:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "253:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2362,18 +2478,121 @@
               "parameters": [],
               "src": "377:0:5"
             },
-            "scope": 746,
+            "scope": 756,
             "src": "342:77:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 754,
+              "nodeType": "Block",
+              "src": "468:33:5",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 750,
+                      "name": "balance",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 705,
+                      "src": "479:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 751,
+                      "name": "amount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 747,
+                      "src": "487:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      }
+                    },
+                    "src": "479:14:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "id": 753,
+                  "nodeType": "ExpressionStatement",
+                  "src": "479:14:5"
+                }
+              ]
+            },
+            "functionSelector": "c2f3e600",
+            "id": 755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferEther",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 748,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 747,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 755,
+                  "src": "450:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 746,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "450:3:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "449:12:5"
+            },
+            "returnParameters": {
+              "id": 749,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "468:0:5"
+            },
+            "scope": 756,
+            "src": "427:74:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 747,
-        "src": "59:375:5"
+        "scope": 757,
+        "src": "59:457:5"
       }
     ],
-    "src": "33:403:5"
+    "src": "33:485:5"
   },
   "compiler": {
     "name": "solc",
@@ -2383,8 +2602,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x86e21666adA96eF7D2F02Ea05Dd4A436BF47172c",
-      "transactionHash": "0xa936e6b3f0a3022a1d1d5ee6e5a0652eab9d4a735497d15afcaeedf67fa45c80"
+      "address": "0xbcF0cC81b3Ee1d835598DbA0bE3B7131dc7dE95D",
+      "transactionHash": "0x22764194f80824050675e576168e3c765b9ea07458c0ff8a94aab08b0dda4b2d"
     },
     "5777": {
       "events": {},
@@ -2394,7 +2613,7 @@
     }
   },
   "schemaVersion": "3.4.2",
-  "updatedAt": "2021-08-03T00:00:58.148Z",
+  "updatedAt": "2021-08-04T15:09:11.526Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

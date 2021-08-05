@@ -20,7 +20,7 @@
 
  const HDWalletProvider = require('@truffle/hdwallet-provider');
 
- var mnemonic = "tuna member ramp heavy coach tattoo photo loan poverty rice identify then";
+ const mnemonic = "tuna member ramp heavy coach tattoo photo loan poverty rice identify then";
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
@@ -49,7 +49,7 @@ module.exports = {
      },
      rinkeby: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/5cfe3a1d88c24649a272287a7c8b0c0f");
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/5cfe3a1d88c24649a272287a7c8b0c0f" , 0, 1);
       },
       network_id: 4,
       gas: 5500000,
