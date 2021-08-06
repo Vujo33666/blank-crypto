@@ -6,14 +6,16 @@ import {Button} from '@material-ui/core';
 import { StylesProvider } from '@material-ui/core/styles';
 import Cookies from "js-cookie";
 import Web3 from "web3";
-import {addressEthereum, abi} from "../../connect_data";
-const MyContract = require("./../../contracts/build/contracts/VujoBank.json");
+const MyContract = require("./../../contracts/build/contracts/PAToken.json");
 
 const Explore = (props) =>{
 
     const address=Cookies.get("address");
     const [balance,setBalance] = useState(0);
+    const [balanceEth,setBalanceEth] = useState(0);
     const [paragraph,setParagraph] = useState(false);
+    let resultToken;
+    let resultEth;
  
 
     const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
@@ -21,13 +23,15 @@ const Explore = (props) =>{
     const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
     
     if(contract){
-       // contract.methods.getBalance().call().then(bal => {result = bal});
+       contract.methods.balanceOf(address).call().then(bal => {
+           resultToken = bal
+        });
     }
     
-    let result;
     async function handleBalance(){
-        result = web3.utils.fromWei(await web3.eth.getBalance(address),"ether");
-        setBalance(result);
+        resultEth = web3.utils.fromWei(await web3.eth.getBalance(address),"ether");
+        setBalance(resultToken);
+        setBalanceEth(resultEth);
         setParagraph(true);
     }
 
@@ -50,8 +54,9 @@ const Explore = (props) =>{
                 <div>
                 {paragraph ? 
                     <div>
-                        <p>You have {balance} Ethereum coins</p>
-                        <p>Account worth in $: {(balance * 1868.05).toFixed(2)}</p>
+                        <p>You have {balance} MVT tokens</p>
+                        <p>Ethers on account: {parseFloat(balanceEth).toFixed(8)}</p>
+                        <p>Account worth in $: {(balanceEth * 1868.05).toFixed(2)}</p>
                     </div> :
                     null
                 }

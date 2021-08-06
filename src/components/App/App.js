@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-            <Route exact path ="/" render={props=>(<LoginPage {...props} /*handleAddress={handleAddress}*//>)}/>
+            <Route exact path ="/" render={props=>(<LoginPage {...props} handleAddress={handleAddress}/>)}/>
             <ProtectedRoute exact path="/explore" component={Explore}/>
             <ProtectedRoute path ="*" component={Dashboard} userAddress={address}/>
         </Switch>

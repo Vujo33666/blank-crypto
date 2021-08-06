@@ -1412,15 +1412,15 @@
     "absolutePath": "project:/contracts/VujoBank.sol",
     "exportedSymbols": {
       "VujoBank": [
-        756
+        789
       ]
     },
-    "id": 757,
+    "id": 790,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 703,
+        "id": 736,
         "literals": [
           "solidity",
           "0.8",
@@ -1435,20 +1435,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 756,
+        "id": 789,
         "linearizedBaseContracts": [
-          756
+          789
         ],
         "name": "VujoBank",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 705,
+            "id": 738,
             "mutability": "mutable",
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 756,
+            "scope": 789,
             "src": "83:11:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1457,7 +1457,7 @@
               "typeString": "int256"
             },
             "typeName": {
-              "id": 704,
+              "id": 737,
               "name": "int",
               "nodeType": "ElementaryTypeName",
               "src": "83:3:5",
@@ -1470,23 +1470,23 @@
           },
           {
             "body": {
-              "id": 712,
+              "id": 745,
               "nodeType": "Block",
               "src": "120:30:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 710,
+                    "id": 743,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 708,
+                      "id": 741,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "131:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -1497,7 +1497,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "313536",
-                      "id": 709,
+                      "id": 742,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1517,31 +1517,31 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 711,
+                  "id": 744,
                   "nodeType": "ExpressionStatement",
                   "src": "131:11:5"
                 }
               ]
             },
-            "id": 713,
+            "id": 746,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 706,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "118:2:5"
             },
             "returnParameters": {
-              "id": 707,
+              "id": 740,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "120:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "107:43:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1549,54 +1549,54 @@
           },
           {
             "body": {
-              "id": 720,
+              "id": 753,
               "nodeType": "Block",
               "src": "208:33:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 718,
+                    "id": 751,
                     "name": "balance",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 705,
+                    "referencedDeclaration": 738,
                     "src": "226:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
                     }
                   },
-                  "functionReturnParameters": 717,
-                  "id": 719,
+                  "functionReturnParameters": 750,
+                  "id": 752,
                   "nodeType": "Return",
                   "src": "219:14:5"
                 }
               ]
             },
             "functionSelector": "12065fe0",
-            "id": 721,
+            "id": 754,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 714,
+              "id": 747,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "181:2:5"
             },
             "returnParameters": {
-              "id": 717,
+              "id": 750,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 716,
+                  "id": 749,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 721,
+                  "scope": 754,
                   "src": "204:3:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1605,7 +1605,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 715,
+                    "id": 748,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "204:3:5",
@@ -1619,7 +1619,7 @@
               ],
               "src": "203:5:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "162:79:5",
             "stateMutability": "view",
             "virtual": false,
@@ -1627,23 +1627,23 @@
           },
           {
             "body": {
-              "id": 732,
+              "id": 765,
               "nodeType": "Block",
               "src": "289:41:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 730,
+                    "id": 763,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 726,
+                      "id": 759,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "300:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -1657,17 +1657,17 @@
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       },
-                      "id": 729,
+                      "id": 762,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 727,
+                        "id": 760,
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 705,
+                        "referencedDeclaration": 738,
                         "src": "308:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -1677,11 +1677,11 @@
                       "nodeType": "BinaryOperation",
                       "operator": "-",
                       "rightExpression": {
-                        "id": 728,
+                        "id": 761,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 723,
+                        "referencedDeclaration": 756,
                         "src": "316:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -1700,30 +1700,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 731,
+                  "id": 764,
                   "nodeType": "ExpressionStatement",
                   "src": "300:22:5"
                 }
               ]
             },
             "functionSelector": "7e62eab8",
-            "id": 733,
+            "id": 766,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 724,
+              "id": 757,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 723,
+                  "id": 756,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 733,
+                  "scope": 766,
                   "src": "271:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1732,7 +1732,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 722,
+                    "id": 755,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "271:3:5",
@@ -1747,12 +1747,12 @@
               "src": "270:12:5"
             },
             "returnParameters": {
-              "id": 725,
+              "id": 758,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "253:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1760,23 +1760,23 @@
           },
           {
             "body": {
-              "id": 744,
+              "id": 777,
               "nodeType": "Block",
               "src": "377:42:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 742,
+                    "id": 775,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 738,
+                      "id": 771,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "388:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -1790,17 +1790,17 @@
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       },
-                      "id": 741,
+                      "id": 774,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 739,
+                        "id": 772,
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 705,
+                        "referencedDeclaration": 738,
                         "src": "397:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -1810,11 +1810,11 @@
                       "nodeType": "BinaryOperation",
                       "operator": "+",
                       "rightExpression": {
-                        "id": 740,
+                        "id": 773,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 735,
+                        "referencedDeclaration": 768,
                         "src": "405:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -1833,30 +1833,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 743,
+                  "id": 776,
                   "nodeType": "ExpressionStatement",
                   "src": "388:23:5"
                 }
               ]
             },
             "functionSelector": "f04991f0",
-            "id": 745,
+            "id": 778,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 736,
+              "id": 769,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 735,
+                  "id": 768,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 745,
+                  "scope": 778,
                   "src": "359:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1865,7 +1865,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 734,
+                    "id": 767,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "359:3:5",
@@ -1880,12 +1880,12 @@
               "src": "358:12:5"
             },
             "returnParameters": {
-              "id": 737,
+              "id": 770,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "377:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "342:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1893,23 +1893,23 @@
           },
           {
             "body": {
-              "id": 754,
+              "id": 787,
               "nodeType": "Block",
               "src": "468:33:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 752,
+                    "id": 785,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 750,
+                      "id": 783,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "479:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -1919,11 +1919,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 751,
+                      "id": 784,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 747,
+                      "referencedDeclaration": 780,
                       "src": "487:6:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -1936,30 +1936,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 753,
+                  "id": 786,
                   "nodeType": "ExpressionStatement",
                   "src": "479:14:5"
                 }
               ]
             },
             "functionSelector": "c2f3e600",
-            "id": 755,
+            "id": 788,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "transferEther",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 748,
+              "id": 781,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 747,
+                  "id": 780,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 755,
+                  "scope": 788,
                   "src": "450:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1968,7 +1968,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 746,
+                    "id": 779,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "450:3:5",
@@ -1983,19 +1983,19 @@
               "src": "449:12:5"
             },
             "returnParameters": {
-              "id": 749,
+              "id": 782,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "468:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "427:74:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 757,
+        "scope": 790,
         "src": "59:457:5"
       }
     ],
@@ -2005,15 +2005,15 @@
     "absolutePath": "project:/contracts/VujoBank.sol",
     "exportedSymbols": {
       "VujoBank": [
-        756
+        789
       ]
     },
-    "id": 757,
+    "id": 790,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 703,
+        "id": 736,
         "literals": [
           "solidity",
           "0.8",
@@ -2028,20 +2028,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 756,
+        "id": 789,
         "linearizedBaseContracts": [
-          756
+          789
         ],
         "name": "VujoBank",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 705,
+            "id": 738,
             "mutability": "mutable",
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 756,
+            "scope": 789,
             "src": "83:11:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2050,7 +2050,7 @@
               "typeString": "int256"
             },
             "typeName": {
-              "id": 704,
+              "id": 737,
               "name": "int",
               "nodeType": "ElementaryTypeName",
               "src": "83:3:5",
@@ -2063,23 +2063,23 @@
           },
           {
             "body": {
-              "id": 712,
+              "id": 745,
               "nodeType": "Block",
               "src": "120:30:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 710,
+                    "id": 743,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 708,
+                      "id": 741,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "131:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -2090,7 +2090,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "313536",
-                      "id": 709,
+                      "id": 742,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2110,31 +2110,31 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 711,
+                  "id": 744,
                   "nodeType": "ExpressionStatement",
                   "src": "131:11:5"
                 }
               ]
             },
-            "id": 713,
+            "id": 746,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 706,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "118:2:5"
             },
             "returnParameters": {
-              "id": 707,
+              "id": 740,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "120:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "107:43:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2142,54 +2142,54 @@
           },
           {
             "body": {
-              "id": 720,
+              "id": 753,
               "nodeType": "Block",
               "src": "208:33:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 718,
+                    "id": 751,
                     "name": "balance",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 705,
+                    "referencedDeclaration": 738,
                     "src": "226:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
                     }
                   },
-                  "functionReturnParameters": 717,
-                  "id": 719,
+                  "functionReturnParameters": 750,
+                  "id": 752,
                   "nodeType": "Return",
                   "src": "219:14:5"
                 }
               ]
             },
             "functionSelector": "12065fe0",
-            "id": 721,
+            "id": 754,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 714,
+              "id": 747,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "181:2:5"
             },
             "returnParameters": {
-              "id": 717,
+              "id": 750,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 716,
+                  "id": 749,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 721,
+                  "scope": 754,
                   "src": "204:3:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2198,7 +2198,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 715,
+                    "id": 748,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "204:3:5",
@@ -2212,7 +2212,7 @@
               ],
               "src": "203:5:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "162:79:5",
             "stateMutability": "view",
             "virtual": false,
@@ -2220,23 +2220,23 @@
           },
           {
             "body": {
-              "id": 732,
+              "id": 765,
               "nodeType": "Block",
               "src": "289:41:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 730,
+                    "id": 763,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 726,
+                      "id": 759,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "300:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -2250,17 +2250,17 @@
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       },
-                      "id": 729,
+                      "id": 762,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 727,
+                        "id": 760,
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 705,
+                        "referencedDeclaration": 738,
                         "src": "308:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -2270,11 +2270,11 @@
                       "nodeType": "BinaryOperation",
                       "operator": "-",
                       "rightExpression": {
-                        "id": 728,
+                        "id": 761,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 723,
+                        "referencedDeclaration": 756,
                         "src": "316:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -2293,30 +2293,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 731,
+                  "id": 764,
                   "nodeType": "ExpressionStatement",
                   "src": "300:22:5"
                 }
               ]
             },
             "functionSelector": "7e62eab8",
-            "id": 733,
+            "id": 766,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 724,
+              "id": 757,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 723,
+                  "id": 756,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 733,
+                  "scope": 766,
                   "src": "271:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2325,7 +2325,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 722,
+                    "id": 755,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "271:3:5",
@@ -2340,12 +2340,12 @@
               "src": "270:12:5"
             },
             "returnParameters": {
-              "id": 725,
+              "id": 758,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "253:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2353,23 +2353,23 @@
           },
           {
             "body": {
-              "id": 744,
+              "id": 777,
               "nodeType": "Block",
               "src": "377:42:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 742,
+                    "id": 775,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 738,
+                      "id": 771,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "388:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -2383,17 +2383,17 @@
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       },
-                      "id": 741,
+                      "id": 774,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 739,
+                        "id": 772,
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 705,
+                        "referencedDeclaration": 738,
                         "src": "397:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -2403,11 +2403,11 @@
                       "nodeType": "BinaryOperation",
                       "operator": "+",
                       "rightExpression": {
-                        "id": 740,
+                        "id": 773,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 735,
+                        "referencedDeclaration": 768,
                         "src": "405:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
@@ -2426,30 +2426,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 743,
+                  "id": 776,
                   "nodeType": "ExpressionStatement",
                   "src": "388:23:5"
                 }
               ]
             },
             "functionSelector": "f04991f0",
-            "id": 745,
+            "id": 778,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 736,
+              "id": 769,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 735,
+                  "id": 768,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 745,
+                  "scope": 778,
                   "src": "359:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2458,7 +2458,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 734,
+                    "id": 767,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "359:3:5",
@@ -2473,12 +2473,12 @@
               "src": "358:12:5"
             },
             "returnParameters": {
-              "id": 737,
+              "id": 770,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "377:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "342:77:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2486,23 +2486,23 @@
           },
           {
             "body": {
-              "id": 754,
+              "id": 787,
               "nodeType": "Block",
               "src": "468:33:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 752,
+                    "id": 785,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 750,
+                      "id": 783,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 705,
+                      "referencedDeclaration": 738,
                       "src": "479:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -2512,11 +2512,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 751,
+                      "id": 784,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 747,
+                      "referencedDeclaration": 780,
                       "src": "487:6:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
@@ -2529,30 +2529,30 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 753,
+                  "id": 786,
                   "nodeType": "ExpressionStatement",
                   "src": "479:14:5"
                 }
               ]
             },
             "functionSelector": "c2f3e600",
-            "id": 755,
+            "id": 788,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "transferEther",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 748,
+              "id": 781,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 747,
+                  "id": 780,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 755,
+                  "scope": 788,
                   "src": "450:10:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2561,7 +2561,7 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 746,
+                    "id": 779,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "450:3:5",
@@ -2576,19 +2576,19 @@
               "src": "449:12:5"
             },
             "returnParameters": {
-              "id": 749,
+              "id": 782,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "468:0:5"
             },
-            "scope": 756,
+            "scope": 789,
             "src": "427:74:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 757,
+        "scope": 790,
         "src": "59:457:5"
       }
     ],
@@ -2602,18 +2602,18 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0xbcF0cC81b3Ee1d835598DbA0bE3B7131dc7dE95D",
-      "transactionHash": "0x22764194f80824050675e576168e3c765b9ea07458c0ff8a94aab08b0dda4b2d"
+      "address": "0x79AA3C0714e948DF1334da7e93d78bDa708CD215",
+      "transactionHash": "0x091344c950b9582636a7e47ecbcc03a2e4e8a533d5fdaecf2961b4c5b29e0dcc"
     },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xa111275427EB667ADFdEd3F8ecA2E0FF8D7dd01a",
-      "transactionHash": "0x87c6a1b0fc9018a5283a75a512644c743873b732a938a6d68de31e0e535b3dfd"
+      "address": "0x4C283A63EC4d1AD68AB34521daF593948997634C",
+      "transactionHash": "0x3acd9f3d53cd1c588866192eae938f3d50bfa58bfdc915b0f5e14287ae473680"
     }
   },
   "schemaVersion": "3.4.2",
-  "updatedAt": "2021-08-04T15:09:11.526Z",
+  "updatedAt": "2021-08-05T22:58:48.599Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

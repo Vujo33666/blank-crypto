@@ -11,28 +11,32 @@ import styles from "./style.module.css";
 import { StylesProvider } from '@material-ui/core/styles';
 import WAValidator from "multicoin-address-validator";
 import Web3 from "web3";
-const MyContract = require("./../../contracts/build/contracts/VujoBank.json");
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MyContract = require("./../../contracts/build/contracts/PAToken.json");
 
 
 export default function Transfer(props) {
 
-  const findSenderUser = JSON.parse(window.localStorage.getItem(props.userAddress));
+  const MySwal = withReactContent(Swal);
   const [open, setOpen] = useState(false);
   const [balance,setBalance] = useState(0);
   const [ethAddress,setEthAddress] = useState("");
   const [balanceError,setBalanceError] = useState(false);
   const [ethAddressError,setEthAddressError] = useState(false);
-  const [transfer,setTransfer] = useState(true);
+  const [transfer,setTransfer] = useState(false);
   const [addressTransfer, setAddressTransfer] = useState(false);
+  const [balanceOf,setBalanceOf] = useState(0);
 
-  let result;
 
   const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
   const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
   const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
   
   if(contract){
-      contract.methods.getBalance().call().then(bal => {result = bal});
+    contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
+      setBalanceOf(bal);
+   });
   }
 
   const handleClickOpen = () => {
@@ -54,10 +58,13 @@ export default function Transfer(props) {
     if(ethAddress === ""){
       setEthAddressError(true)
     }
-    if(balance === ""){
+    if(balance === "" || parseFloat(balance) === 0){
       setBalanceError(true)
     }
-    if(ethAddress && EtherAddressValidator() && balance){
+    if(transfer){
+      setBalanceError(true)
+    }
+    if(ethAddress && EtherAddressValidator() && transfer){
       sendEthereum();
     }
   }
@@ -70,97 +77,54 @@ export default function Transfer(props) {
     setEthAddress(address);
   }
 
-  /*function transactionLogic(receiver){
-
-    receiver.transactions.push({
-      id: receiver.transactions.length,
-      from: props.userAddress,
-      howMany: parseFloat(balance),
-    });
-
-    findSenderUser.transactionsSent.push({
-      id: findSenderUser.transactionsSent.length,
-      howMany: parseFloat(balance),
-      to: ethAddress
-    });
-    localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
-
-  }*/
-
   function EtherAddressValidator(){
     let valid = WAValidator.validate(ethAddress, 'eth');
     if(valid){
-        console.log('This is a valid address');
         return true;
     }
     else{
-        console.log('Address INVALID');
         return false;
     }
   }
 
-  async function getAddresses(){
-    let addresses = await web3.eth.getAccounts();
-    console.log(addresses);
-  }
-  getAddresses();
-
-  async function sendEthereum(){
-    await web3.eth.sendTransaction({
-      from: window.ethereum.selectedAddress,
-      to: ethAddress,
-      value: web3.utils.toWei(balance,"ether")
-    });
-
-  /* SLANJE PREMA CONTRACTU - depozit ili minting
-  console.log("ADRESA : " + window.ethereum.selectedAddress)
-  contract.methods.transferEther(balance).send({
-    from: window.ethereum.selectedAddress,
-  })
-  .then(receipt=>{
-    console.log("poslano od: " + receipt.from);
-    console.log("adresa contract-a: " + receipt.to);
-    console.log("RECEIPT");
-    console.log(receipt);
-  });*/
-
-  setOpen(false);
-
-    /*if(transfer===true){
-      let findReceiverUser = JSON.parse(window.localStorage.getItem(ethAddress));
-
-      if(findReceiverUser!==null){
-        findReceiverUser.accBalance = parseFloat(findReceiverUser.accBalance) + parseFloat(balance);
-        findReceiverUser.value=Number(findReceiverUser.accBalance)*1868.05;
-        transactionLogic(findReceiverUser);
-        localStorage.setItem(ethAddress, JSON.stringify(findReceiverUser));
-      }else{
-        let obj=new Object();
-        obj.id= localStorage.length;
-        obj.user = ethAddress;
-        obj.accBalance = Number(parseFloat(balance).toFixed(8));
-        //fixed ether price for now
-        obj.value=obj.accBalance * 1868.05;
-        obj.transactions=[];
-        obj.transactionsSent=[];
-        transactionLogic(obj);
-        localStorage.setItem(ethAddress,JSON.stringify(obj));
-      }
-  
-      let findSenderUser = JSON.parse(window.localStorage.getItem(props.userAddress));
-      findSenderUser.accBalance = parseFloat(findSenderUser.accBalance) - parseFloat(balance);
-      findSenderUser.value=Number(findSenderUser.accBalance)*1868.05;
-      localStorage.setItem(props.userAddress, JSON.stringify(findSenderUser));
-      setOpen(false);
-    }else{
-      setOpen(true);
-    } */
+  function sendEthereum(){
+    console.log("balanca je: " + balance);
+    contract.methods.transfer(ethAddress,balance)
+      .send({ from: window.ethereum.selectedAddress })
+      .then((data)=>{
+        console.log("Transfer:");
+        console.log(data);
+        MySwal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your transfer is done',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+      .catch((err)=>{
+        console.log(err);
+        if(err.code===4001){
+          MySwal.fire({
+            icon: 'info',
+            title: 'You canceled minting PAT',
+          })
+        }
+        else{
+          MySwal.fire({
+            icon: 'warning',
+            title: 'Transfer error',
+          })
+        }
+      });
+    
+    setOpen(false);
 
   }
 
-  /*useEffect(()=>{
-    findSenderUser.accBalance >= balance ? setTransfer(true) : setTransfer(false);
-},[balance]);*/
+  useEffect(()=>{
+    (parseFloat(balanceOf) >= balance) ? setTransfer(true) : setTransfer(false);
+  },[balance]);
 
   useEffect(()=>{
     EtherAddressValidator() ? setAddressTransfer(true) : setAddressTransfer(false);

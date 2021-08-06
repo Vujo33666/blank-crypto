@@ -27,57 +27,7 @@ const LoginPage = (props) =>{
         ethereum && setAddrEther(window.ethereum.selectedAddress);
     },[]);
 
-    /*let web3 = new Web3(new Web);
-    if (typeof window.ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
-        // web3 = new Web3(web3.currentProvider);
-      }else{
-          console.log("Install MetaMask!!!");
-         //web3 = new Web3("http://localhost:3000/");
-      }
-
-
-    let contract = new web3.eth.Contract(abi,addressEthereum);
-    console.log(contract.methods.name().call());*/
-
-
-
-    /*contract.methods.getBalance().call().then(balance=>{
-        console.log(balance);
-    });
-    web3.eth.getAccounts().then((accounts)=>{
-        let acc=addressEthereum;
-        console.log("Accoutn " + acc);
-        return contract.methods.deposit(16).send({from: acc});
-    }).then((data)=>{
-        console.log("data je " + data);
-    }).catch((text)=>{
-        console.log("Cathceani text je " + text);
-    })*/
-
-
-    /*function handleSubmit(){
-        let find=keys.filter(key=>{
-            return key===addrEther
-        });
-        //user found in local storage
-        if(find.length!==0 && addrEther.length>0){
-            console.log("Old user");
-        }
-        else{
-            console.log("New user");
-            let obj=new Object();
-            obj.id= localStorage.length;
-            obj.user = addrEther;
-            obj.accBalance = Number(parseFloat(Math.random()*10).toFixed(8));
-            //fixed ether price for now
-            obj.value=obj.accBalance * 1868.05;
-            obj.transactions=[];
-            obj.transactionsSent=[];
-            localStorage.setItem(addrEther,JSON.stringify(obj));
-        }
-    }*/
-
+    
     return (
         <StylesProvider injectFirst>
             <div className={styles.main_container}>
@@ -91,7 +41,7 @@ const LoginPage = (props) =>{
                         className={styles.button}
                         onClick={()=>{
                             if(validation){
-                                //props.handleAddress(addrEther);
+                                props.handleAddress(addrEther);
                                 Cookies.set("address",addrEther);
                                 auth.login(()=>{
                                     props.history.push("/dashboard");

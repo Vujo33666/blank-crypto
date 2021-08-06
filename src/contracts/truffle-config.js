@@ -49,13 +49,14 @@ module.exports = {
      },
      rinkeby: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/5cfe3a1d88c24649a272287a7c8b0c0f" , 0, 1);
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/e7d4edcaebb34b25acba85869dcc5af3");
       },
       network_id: 4,
       gas: 5500000,
       confirmations: 2,
       timeoutBlocks: 200,
-      skipDryRun: true
+      skipDryRun: true,
+      networkCheckTimeout: 999999
 
     }
     // Another network with more advanced options...
