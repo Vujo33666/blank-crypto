@@ -14,7 +14,15 @@ function App() {
 
   function handleAddress(loginAddress){
     setAddress(loginAddress);
+    console.log("adresa: " + address);
   }
+
+  if(window.ethereum){
+    window.ethereum.on("accountsChanged",(accounts)=>{
+        handleAddress(accounts[0]);
+        Cookies.set("address",accounts[0]);
+    });
+}
 
   return (
     <div className="App">

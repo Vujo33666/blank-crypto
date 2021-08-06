@@ -8,30 +8,46 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import styles from "./style.module.css";
+import Web3 from "web3";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MyContract = require("./../../contracts/build/contracts/PAToken.json");
 
 export default function Mint(props) {
 
+  const MySwal = withReactContent(Swal);
   const [open, setOpen] = useState(false);
-  const [balance,setBalance] = useState(0);
   const [balanceError,setBalanceError] = useState(false);
+  const [mintingAmount,setMintingAmount] = useState(0);
+  const [balance,setBalance] = useState(0);
+
+  const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
+  const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
+  const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+
+    function handleBalance(){
+        setBalance(0);
+    }
+
+    function handleMintingAmount(value){
+      setMintingAmount(value);
+    }
 
   const handleClickOpen = () => {
-    setBalance(0);
+    handleBalance();
     setOpen(true);
   };
 
   const handleClose = () => {
+    handleBalance();
     setOpen(false);
     setBalanceError(false);
   };
 
-  function handleBalance (value){
-    setBalance(value);
-  }
 
   function handleNumericInput(){
     setBalanceError(false);
-    if(balance === ""){
+    if(mintingAmount === "" || mintingAmount===0){
       setBalanceError(true);
     }else{
       addEthereum();
@@ -39,10 +55,28 @@ export default function Mint(props) {
   }
 
   function addEthereum(){
-    let findUser = JSON.parse(window.localStorage.getItem(props.userAddress));
-    findUser.accBalance = parseFloat(findUser.accBalance) + parseFloat(balance);
-    findUser.value=Number(findUser.accBalance)*1868.05;
-    localStorage.setItem(props.userAddress, JSON.stringify(findUser));
+    contract.methods.mint(window.ethereum.selectedAddress,mintingAmount)
+    .send({from:window.ethereum.selectedAddress})
+    .then((data)=>{
+      console.log("Mint:");
+      console.log(data);
+      MySwal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your minting is done',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err)=>{
+      if(err.code===4001){
+        MySwal.fire({
+          icon: 'info',
+          title: 'You canceled minting PAT',
+        })
+      }
+    })
+    handleBalance();
     setOpen(false);
   }
 
@@ -76,8 +110,8 @@ export default function Mint(props) {
             id="outlined-basic"
             label="Amount"
             variant="outlined" 
-            value={balance}
-            onChange={(e) => handleBalance(e.target.value)}
+            value={mintingAmount}
+            onChange={(e) => handleMintingAmount(e.target.value)}
             error={balanceError}
           >
           </TextField>

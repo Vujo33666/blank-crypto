@@ -1,5 +1,5 @@
-const Migrations = artifacts.require("Migrations");
+const VujoBank = artifacts.require("./VujoBank");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+  deployer.deploy(VujoBank);
 };

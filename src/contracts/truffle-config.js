@@ -18,8 +18,9 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-//
+ const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+ const mnemonic = "tuna member ramp heavy coach tattoo photo loan poverty rice identify then";
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
@@ -46,6 +47,18 @@ module.exports = {
       port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
+     rinkeby: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/e7d4edcaebb34b25acba85869dcc5af3");
+      },
+      network_id: 4,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+      networkCheckTimeout: 999999
+
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
