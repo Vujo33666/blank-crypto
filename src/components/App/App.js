@@ -14,7 +14,6 @@ function App() {
 
   function handleAddress(loginAddress){
     setAddress(loginAddress);
-    console.log("adresa: " + address);
   }
 
   if(window.ethereum){

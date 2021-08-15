@@ -13,7 +13,8 @@ import WAValidator from "multicoin-address-validator";
 import Web3 from "web3";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-const MyContract = require("./../../contracts/build/contracts/PAToken.json");
+import MyContract from "./../../contracts/build/contracts/PAToken.json";
+import { ethers } from "ethers";
 
 
 export default function Transfer(props) {
@@ -35,7 +36,7 @@ export default function Transfer(props) {
   
   if(contract){
     contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
-      setBalanceOf(bal);
+      setBalanceOf(bal/(10**8));
    });
   }
 
@@ -88,8 +89,7 @@ export default function Transfer(props) {
   }
 
   function sendEthereum(){
-    console.log("balanca je: " + balance);
-    contract.methods.transfer(ethAddress,balance)
+    contract.methods.transfer(ethAddress,parseFloat(balance).toFixed(8)*(10**8))
       .send({ from: window.ethereum.selectedAddress })
       .then((data)=>{
         console.log("Transfer:");

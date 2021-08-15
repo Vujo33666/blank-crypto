@@ -19,14 +19,13 @@ export default function Mint(props) {
   const [open, setOpen] = useState(false);
   const [balanceError,setBalanceError] = useState(false);
   const [mintingAmount,setMintingAmount] = useState(0);
-  const [balance,setBalance] = useState(0);
 
   const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
   const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
   const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
 
     function handleBalance(){
-        setBalance(0);
+        setMintingAmount(0);
     }
 
     function handleMintingAmount(value){
@@ -55,7 +54,7 @@ export default function Mint(props) {
   }
 
   function addEthereum(){
-    contract.methods.mint(window.ethereum.selectedAddress,mintingAmount)
+    contract.methods.mint(window.ethereum.selectedAddress,parseFloat(mintingAmount).toFixed(8)*(10**8))
     .send({from:window.ethereum.selectedAddress})
     .then((data)=>{
       console.log("Mint:");
@@ -97,7 +96,8 @@ export default function Mint(props) {
           <DialogContentText>
             Enter the amount of Ethereum for buying.
             <br />
-            Account: {props.userAddress}
+            Account:<br/>
+            {props.userAddress}
           </DialogContentText>
           <TextField 
             type="number" 
