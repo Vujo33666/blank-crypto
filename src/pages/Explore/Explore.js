@@ -24,8 +24,11 @@ const Explore = (props) =>{
     
     if(contract){
        contract.methods.balanceOf(address).call().then(bal => {
-           resultToken = bal
+           resultToken = bal/(10**8);
         });
+        contract.methods.totalSupply().call().then(bal => {
+            console.log("Total supply: " + bal/(10**8));
+         });
     }
     
     async function handleBalance(){
@@ -54,7 +57,7 @@ const Explore = (props) =>{
                 <div>
                 {paragraph ? 
                     <div>
-                        <p>You have {balance} MVT tokens</p>
+                        <p>You have {balance} PAT tokens</p>
                         <p>Ethers on account: {parseFloat(balanceEth).toFixed(8)}</p>
                         <p>Account worth in $: {(balanceEth * 1868.05).toFixed(2)}</p>
                     </div> :
