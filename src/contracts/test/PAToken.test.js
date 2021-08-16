@@ -2,87 +2,48 @@ const PAToken = artifacts.require("./PAToken.sol");
 
 contract("PAToken", accounts => {
 
-    it("Should return balance",  () => {
-        let token;
-        PAToken.deployed()
-        .then(instance => {
-            token=instance;
-            return token.balanceOf(accounts[0]);
-        })
-        .then(balance => {
-            balance=web3.utils.fromWei(balance,"ether");
-            console.log(balance)
-            assert.equal(balance,0.2,"Balance values are not the same")
-        });
-    });
-
-    it("Should transfer tokens between accounts", () => {
-        let amount = web3.utils.toWei("0.1","ether");
-        let token;
-        let account_one_starting_balance;
-        let account_two_starting_balance;
-        let account_one_ending_balance;
-        let account_two_ending_balance;
-        PAToken.deployed()
-        .then(instance => {
-            token=instance;
-            account_one_starting_balance =  token.balanceOf(accounts[0]);
-            account_two_starting_balance =  token.balanceOf(accounts[1]);
-            return token.transfer(accounts[1], amount, {from: accounts[0]});
-        })
-        .then(() => {
-            return token.balanceOf(accounts[0]);
-        })
-        .then(result => {
-            account_one_ending_balance = result.toNumber();
-            return token.balanceOf(accounts[0]);
-        })
-        .then(result => {
-            account_two_ending_balance = result.toNumber();
-
-            assert.equal(
-                account_one_ending_balance,
-                account_one_starting_balance - amount,
-                "Amount wasn't correctly taken from the sender"
-             );
-            assert.equal(
-                account_two_ending_balance,
-                account_two_starting_balance - amount,
-                "Amount wasn't correctly sent to the receiver"
-             );
-    
-        })
+    before(async () => {
+        pat=await PAToken.deployed()
     })
 
+    it("should return correct balance", async()=>{
+        let balance = await pat.balanceOf(accounts[0]);
+        balance = web3.utils.fromWei(balance,"ether");
+        assert.equal(balance,"0.1", "The balance should be 0.2")
+    })
 
-    it("Should mint PATokens", () => {
+    it("should transfer tokens between accounts", async()=>{
 
-        let token;
-        let starting_balance;
-        let ending_balance;
-        let amount = web3.utils.toWei("0.1","ether");
+        let amount = web3.utils.toWei("0.02","ether");
+
+        let starting_balance_acc1 = await pat.balanceOf(accounts[0]);
+        starting_balance_acc1 = web3.utils.fromWei(starting_balance_acc1,"ether");
+
+        let starting_balance_acc2 = await pat.balanceOf(accounts[1]);
+        starting_balance_acc2 = web3.utils.fromWei(starting_balance_acc2,"ether");
+
+        await pat.transfer(accounts[1], amount, {from:accounts[0]})
+
+        let ending_balance_acc1 = await pat.balanceOf(accounts[0]);
+        ending_balance_acc1 = web3.utils.fromWei(ending_balance_acc1,"ether");
+
+        let ending_balance_acc2 = await pat.balanceOf(accounts[1]);
+        ending_balance_acc2 = web3.utils.fromWei(ending_balance_acc2,"ether");
+
+        assert.equal(starting_balance_acc1 - web3.utils.fromWei(amount,"ether") ,ending_balance_acc1, "Amount was correctly taken from the sender");
+        assert.equal(starting_balance_acc2 + web3.utils.fromWei(amount,"ether") ,ending_balance_acc2, "Amount was correctly sent from the receiver")
+    })
+
+    it("should mint tokens", async()=>{
+        let amount = web3.utils.toWei("0.02","ether");
+        let starting_balance = await pat.balanceOf(accounts[0]);
+        starting_balance = web3.utils.fromWei(starting_balance,"ether");
+        await pat.mint(accounts[0], amount, {from:accounts[0]})
+
+        let ending_balance = await pat.balanceOf(accounts[0]);
+        ending_balance = web3.utils.fromWei(ending_balance,"ether");
+        assert.equal(ending_balance,starting_balance + amount, "The ending balance should be 0.1")
+    })
+
     
-        PAToken.deployed()
-        .then((instance) => {
-            token = instance;
-            return token.balanceOf(accounts[0]);
-        })
-        .then(balance => {
-            starting_balance = balance.toNumber();
-            return token.mint(accounts[0], amount).send({ from: accounts[0] });
-        })
-        .then(() => {
-            return token.balanceOf(accounts[0]);
-        })
-        .then((balance) => {
-            ending_balance = balance.toNumber();
-    
-        assert.equal(
-              starting_balance,
-              ending_balance + amount,
-              "Amount wasn't correctly minted"
-            );
-        });
-    });
-
 });
