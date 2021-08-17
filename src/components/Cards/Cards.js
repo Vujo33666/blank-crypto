@@ -11,7 +11,7 @@ const Cards = (props)=>{
             <Card 
                     title="Explore"
                     content="Explore the amount of Ethereum"
-                    explore={props.history}
+                    page={props.history}
             />
             <Card 
                     title="Mint"
@@ -24,6 +24,12 @@ const Cards = (props)=>{
                     content="Transfer to someone"
                     modal="transfer"
                     userAddress={props.userAddress}
+            />
+            <Card 
+                    title="Create Token"
+                    content="Create a transactions for creating a new token"
+                    page={props.history}
+                    createToken={true}
             />
         </div>
     );

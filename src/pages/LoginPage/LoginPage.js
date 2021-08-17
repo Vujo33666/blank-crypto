@@ -44,9 +44,9 @@ const LoginPage = (props) =>{
 
     useEffect(()=>{
         ethereum ? setValidation(true) : setValidation(false);
-        ethereum.selectedAddress && setAddrEther(ethereum.selectedAddress);
-        ethereum.selectedAddress ? setWalletValidation(true) : setWalletValidation(false);
-    },[ethereum.selectedAddress,]);
+        window.ethereum.selectedAddress && setAddrEther( window.ethereum.selectedAddress);
+        window.ethereum.selectedAddress ? setWalletValidation(true) : setWalletValidation(false);
+    },[ethereum]);
 
     
     return (

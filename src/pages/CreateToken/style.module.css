@@ -1,0 +1,43 @@
+.button{
+    margin: 30px auto 10px;
+    text-transform: none;
+    display: block;
+}
+.container{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    padding: 50px 0px;
+    width: 60%;
+    max-width: 1000px;
+    min-width:330px;
+    margin: 5% auto;
+}
+
+.error_msg{
+    color: red;
+}
+
+.text_field{
+    margin-top:40px;
+    margin-bottom:20px;
+}
+
+.number_field{
+    width: 60%;
+    max-width: 400px;
+    display: flex;
+    margin: 40px auto 20px;
+}
+
+.heading {
+    font-size: 2em;
+    margin-bottom: 6px;
+}
+.paragraph {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

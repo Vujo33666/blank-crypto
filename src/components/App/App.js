@@ -5,6 +5,7 @@ import ProtectedRoute from "../../protected.route";
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import Dashboard from '../../pages/Dashboard/Dashboard';
 import Explore from '../../pages/Explore/Explore';
+import CreateToken from '../../pages/CreateToken/CreateToken';
 import Cookies from 'js-cookie';
 
 
@@ -29,6 +30,7 @@ function App() {
         <Switch>
             <Route exact path ="/" render={props=>(<LoginPage {...props} handleAddress={handleAddress}/>)}/>
             <ProtectedRoute exact path="/explore" component={Explore}/>
+            <ProtectedRoute exact path="/create-token" component={CreateToken}/>
             <ProtectedRoute path ="*" component={Dashboard} userAddress={address}/>
         </Switch>
       </Router>

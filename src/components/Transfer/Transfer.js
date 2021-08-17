@@ -14,7 +14,6 @@ import Web3 from "web3";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import MyContract from "./../../contracts/build/contracts/PAToken.json";
-import { ethers } from "ethers";
 
 
 export default function Transfer(props) {
