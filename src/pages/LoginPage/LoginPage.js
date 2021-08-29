@@ -8,6 +8,7 @@ import auth from '../../auth';
 import styles from './style.module.css'
 import Cookies from "js-cookie";
 import { StylesProvider } from "@material-ui/core/styles";
+import {getDocs,docs} from '../../getDocsFirebase';
 
 const LoginPage = (props) =>{
 
@@ -64,8 +65,10 @@ const LoginPage = (props) =>{
                             if(validation && walletValidation){
                                 props.handleAddress(addrEther);
                                 Cookies.set("address",addrEther);
+                                getDocs(addrEther);
                                 auth.login(()=>{
-                                    props.history.push("/dashboard");
+                                    setTimeout(()=>
+                                        props.history.push("/dashboard"),1000);
                                 });
                             }else if(validation){
                                 MySwal.fire({

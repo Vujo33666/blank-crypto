@@ -6,7 +6,10 @@ const ExploreCard = (props)=>{
 
     return(
         <div onClick={()=>{
-            props.history.push("/explore");
+            props.history.push({
+              pathname: '/explore',
+              state: props.userAddress,
+            });
         }}>
         <h1 className={styles.heading}>{props.title}</h1>
         <p className={styles.paragraph}>{props.content}</p>

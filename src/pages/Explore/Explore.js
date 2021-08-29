@@ -1,42 +1,75 @@
-import React,{useState,useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import styles from "./style.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import {Button} from '@material-ui/core';
 import { StylesProvider } from '@material-ui/core/styles';
-import Cookies from "js-cookie";
 import Web3 from "web3";
-const MyContract = require("./../../contracts/build/contracts/PAToken.json");
+import MyContract from "./../../contracts/build/contracts/PAToken.json";
+import firebase from "../../firebase.js";
+import Axios from 'axios';
+
 
 const Explore = (props) =>{
 
-    const address=Cookies.get("address");
-    const [balance,setBalance] = useState(0);
+    const address=props.userAddress;
     const [balanceEth,setBalanceEth] = useState(0);
     const [paragraph,setParagraph] = useState(false);
+    const refToCollection=firebase.firestore().collection(address);
+    const [resultTokens,setResultTokens] = useState([]);
     let resultToken;
     let resultEth;
- 
-
-    const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
-    const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-    const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+    const [coinbaseRates,setCoinbaseRates]=useState({
+        "dollars": 0,
+        "euros" : 0
+    });
     
-    if(contract){
-       contract.methods.balanceOf(address).call().then(bal => {
-           resultToken = bal/(10**8);
+    const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
+    //const contract = new web3.eth.Contract(MyContract.abi,MyContract.networks[4].address);
+    let contracts = [];
+    
+    function getContracts(){
+        refToCollection.onSnapshot((querySnap)=>{
+            querySnap.forEach((doc)=>{
+                contracts.push(doc.id);
+            });
+            for(let i=0;i<contracts.length;i++){
+                getContractData(contracts[i])
+            }
+            contracts.length=0;
         });
-        contract.methods.totalSupply().call().then(bal => {
-            console.log("Total supply: " + bal/(10**8));
-         });
+
+    }
+
+    async function getContractData(contData){
+        let cont = new web3.eth.Contract(MyContract.abi,contData);
+        await cont.methods.balanceOf(address).call().then(bal => {
+                    resultToken=bal/(10**8);
+                    setResultTokens( prev => {
+                        return [...prev, (bal/(10**8))]
+                    })
+                });
     }
     
     async function handleBalance(){
         resultEth = web3.utils.fromWei(await web3.eth.getBalance(address),"ether");
-        setBalance(resultToken);
         setBalanceEth(resultEth);
         setParagraph(true);
     }
+
+    //get data from coinbase api in USD and EUR 
+    async function fetchCoinbasePriceData(){
+        const response=await Axios('https://api.coinbase.com/v2/exchange-rates?currency=ETH');
+        setCoinbaseRates({
+            "dollars": response.data.data.rates.USD,
+            "euros": response.data.data.rates.EUR 
+        })
+    }
+
+    useEffect(()=>{
+        fetchCoinbasePriceData();
+        getContracts();
+    },[])
 
 
     return(
@@ -57,9 +90,16 @@ const Explore = (props) =>{
                 <div>
                 {paragraph ? 
                     <div>
-                        <p>You have {balance} PAT tokens</p>
-                        <p>Ethers on account: {parseFloat(balanceEth).toFixed(8)}</p>
-                        <p>Account worth in $: {(balanceEth * 1868.05).toFixed(2)}</p>
+                        <p>Ethers on account: <strong>{parseFloat(balanceEth).toFixed(8)}</strong></p>
+                        <p>Account worth in $: {(balanceEth * coinbaseRates.dollars).toFixed(2)}</p>
+                        <p>Account worth in €: {(balanceEth * coinbaseRates.euros).toFixed(2)}</p>
+                        {
+                            resultTokens.map((token,index)=>
+                                <p key={index}>
+                                    {index+1}. token supply: <strong>{token.toFixed(8)}</strong>
+                                </p>
+                            )
+                        }
                     </div> :
                     null
                 }

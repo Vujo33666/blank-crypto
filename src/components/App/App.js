@@ -22,15 +22,15 @@ function App() {
         handleAddress(accounts[0]);
         Cookies.set("address",accounts[0]);
     });
-}
+  }
 
   return (
     <div className="App">
       <Router>
         <Switch>
             <Route exact path ="/" render={props=>(<LoginPage {...props} handleAddress={handleAddress}/>)}/>
-            <ProtectedRoute exact path="/explore" component={Explore}/>
-            <ProtectedRoute exact path="/create-token" component={CreateToken}/>
+            <ProtectedRoute exact path="/explore" component={Explore} userAddress={address}/>
+            <ProtectedRoute exact path="/create-token" component={CreateToken} userAddress={address}/>
             <ProtectedRoute path ="*" component={Dashboard} userAddress={address}/>
         </Switch>
       </Router>

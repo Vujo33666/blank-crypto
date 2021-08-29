@@ -11,15 +11,43 @@ const Card = (props)=>{
         props.page ?
         <div className={styles.card}>
             {props.createToken ? 
-                <CreateTokenCard title={props.title} history={props.page} content={props.content} userAddress={props.userAddress}/> :
-                <ExploreCard title={props.title} history={props.page} content={props.content} userAddress={props.userAddress}/> 
+                <CreateTokenCard 
+                    title={props.title} 
+                    history={props.page} 
+                    content={props.content} 
+                    userAddress={props.userAddress}
+                    /> :
+                <ExploreCard 
+                    title={props.title} 
+                    history={props.page} 
+                    content={props.content} 
+                    userAddress={props.userAddress}
+                /> 
             }
         </div> :
         <div className={styles.card}>
-            {props.modal==="mint" ? 
-                <Mint title={props.title} content={props.content} userAddress={props.userAddress}/> :
-                <Transfer title={props.title} content={props.content} userAddress={props.userAddress}/> 
+            {props.selectedContract===undefined ?
+                <div>
+                    <h3>You can't make transactions</h3>
+                    <p>Create a new token!</p>
+                </div>
+                 :
+                [props.modal==="mint" ? 
+                    <Mint 
+                        title={props.title} 
+                        content={props.content} 
+                        userAddress={props.userAddress}
+                        selectedContract={props.selectedContract}
+                    /> :
+                    <Transfer 
+                        title={props.title} 
+                        content={props.content} 
+                        userAddress={props.userAddress}
+                        selectedContract={props.selectedContract}
+                    /> 
+                ] 
             }
+            
         </div>
             
     );

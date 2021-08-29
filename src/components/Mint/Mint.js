@@ -11,7 +11,10 @@ import styles from "./style.module.css";
 import Web3 from "web3";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-const MyContract = require("./../../contracts/build/contracts/PAToken.json");
+import updateTokenFirebase from "../../updateTokenFirebase";
+import MyContract from "./../../contracts/build/contracts/PAToken.json";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 export default function Mint(props) {
 
@@ -19,10 +22,22 @@ export default function Mint(props) {
   const [open, setOpen] = useState(false);
   const [balanceError,setBalanceError] = useState(false);
   const [mintingAmount,setMintingAmount] = useState(0);
-
-  const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
+  const [isLoading,setIsLoading] = useState(false);
+  let contractAddressWeb3;
   const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-  const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+  //get selectedContracts from Tokens via Dashboard and Cards
+  //and checking if it is a new account on metamask
+  if(props.selectedContract===undefined){
+    contractAddressWeb3=MyContract.networks[4].address;
+  }
+  else{
+    contractAddressWeb3=props.selectedContract;
+  }
+  const contract = new web3.eth.Contract(MyContract.abi,contractAddressWeb3);
+//   contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
+//     //console.log(bal)
+//  });
+
 
     function handleBalance(){
         setMintingAmount(0);
@@ -50,15 +65,18 @@ export default function Mint(props) {
       setBalanceError(true);
     }else{
       addEthereum();
+      setIsLoading(true);
     }
   }
 
   function addEthereum(){
-    contract.methods.mint(window.ethereum.selectedAddress,parseFloat(mintingAmount).toFixed(8)*(10**8))
+    contract.methods.mint(window.ethereum.selectedAddress,(parseFloat(mintingAmount).toFixed(8)*(10**8)).toString())
     .send({from:window.ethereum.selectedAddress})
     .then((data)=>{
       console.log("Mint:");
       console.log(data);
+      //sending props.selectedContract bcs of normalCase letters
+      updateTokenFirebase(data.from, props.selectedContract, (parseFloat(mintingAmount).toFixed(8)*(10**8)).toString());
       MySwal.fire({
         position: 'top-end',
         icon: 'success',
@@ -66,6 +84,7 @@ export default function Mint(props) {
         showConfirmButton: false,
         timer: 1500
       })
+      setIsLoading(false);
     })
     .catch((err)=>{
       if(err.code===4001){
@@ -74,6 +93,7 @@ export default function Mint(props) {
           title: 'You canceled minting PAT',
         })
       }
+      setIsLoading(false);
     })
     handleBalance();
     setOpen(false);
@@ -84,11 +104,15 @@ export default function Mint(props) {
       <div className="card-container" onClick={handleClickOpen}>
         <h1 className={styles.heading}>{props.title}</h1>
         <p className={styles.paragraph}>{props.content}</p>
-        <AddIcon
-          className={styles.button}
-          onClick={handleClickOpen}
-          >
-        </AddIcon>
+        {
+          isLoading ?
+          <CircularProgress /> :
+          <AddIcon
+            className={styles.button}
+            onClick={handleClickOpen}
+            >
+          </AddIcon>
+        }
       </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Mint</DialogTitle>

@@ -6,7 +6,10 @@ const CreateTokenCard = (props)=>{
 
     return(
         <div onClick={()=>{
-            props.history.push("/create-token");
+            props.history.push({
+              pathname: '/create-token',
+              state: props.userAddress,
+            });
         }}>
         <h1 className={styles.heading}>{props.title}</h1>
         <p className={styles.paragraph}>{props.content}</p>
