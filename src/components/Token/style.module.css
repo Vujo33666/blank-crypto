@@ -1,0 +1,48 @@
+.active_token_card{
+    background: #9370dbb8;
+    border-radius: 100px;
+    box-shadow: 10px 10px 20px rgb(0 0 0 / 0.3);
+    padding: 10px;
+    width:100px;
+    height: 100px;
+    margin: 16px;
+    float: left;
+    border: 3px #f5ba13 solid;
+}
+
+.button {
+    color: #f5ba13;
+    border: none;
+    width: 40px !important;
+    height: 40px !important;
+    cursor: pointer;
+    outline: none;
+    padding: 0px;
+    border-radius:100px;
+    margin-top:15px;
+}
+
+
+.paragraph{
+    font-size: 1.2rem;
+    margin-top: 0px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.token_card{
+    background: #9370dbb8;
+    border-radius: 100px;
+    box-shadow: 10px 10px 20px rgb(0 0 0 / 0.3);
+    padding: 10px;
+    width:100px;
+    height: 100px;
+    margin: 16px;
+    float: left;
+}
+
+.token_card:hover{
+    cursor: pointer;
+    box-shadow: 0 0 1px 2px #c08d01;
+    transition: all 300ms ease-out;
+}

@@ -14,7 +14,8 @@ import Web3 from "web3";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import MyContract from "./../../contracts/build/contracts/PAToken.json";
-import { ethers } from "ethers";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import setTokenFirebase from "../../setTokenFirebase";
 
 
 export default function Transfer(props) {
@@ -28,16 +29,32 @@ export default function Transfer(props) {
   const [transfer,setTransfer] = useState(false);
   const [addressTransfer, setAddressTransfer] = useState(false);
   const [balanceOf,setBalanceOf] = useState(0);
-
-
-  const deployedNetwork = MyContract.networks[4]; //fixed rinkeby network id
+  const [isLoading,setIsLoading] = useState(false);
+  const [transferYourself,setTransferYourself] = useState(false);
+  const [nameFirebase,setNameFirebase] = useState("");
+  const [symbolFirebase,setSymbolFirebase] = useState("");
+  let contractAddressWeb3;
   const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-  const contract = new web3.eth.Contract(MyContract.abi,deployedNetwork.address);
+  //get selectedContracts from Tokens via Dashboard and Cards
+  //and checking if it is a new account on metamask
+  if(props.selectedContract===undefined){
+    contractAddressWeb3=MyContract.networks[4].address;
+  }
+  else{
+    contractAddressWeb3=props.selectedContract;
+  }
+  const contract = new web3.eth.Contract(MyContract.abi,contractAddressWeb3);
   
   if(contract){
     contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
       setBalanceOf(bal/(10**8));
    });
+    contract.methods.name().call().then(result => {
+      setNameFirebase(result);
+    });
+    contract.methods.symbol().call().then(result => {
+      setSymbolFirebase(result);
+    });
   }
 
   const handleClickOpen = () => {
@@ -65,8 +82,9 @@ export default function Transfer(props) {
     if(transfer){
       setBalanceError(true)
     }
-    if(ethAddress && EtherAddressValidator() && transfer){
+    if(ethAddress && EtherAddressValidator() && transfer && !transferYourself){
       sendEthereum();
+      setIsLoading(true);
     }
   }
 
@@ -89,11 +107,13 @@ export default function Transfer(props) {
   }
 
   function sendEthereum(){
-    contract.methods.transfer(ethAddress,parseFloat(balance).toFixed(8)*(10**8))
+    contract.methods.transfer(ethAddress,(parseFloat(balance).toFixed(8)*(10**8)).toString())
       .send({ from: window.ethereum.selectedAddress })
       .then((data)=>{
         console.log("Transfer:");
         console.log(data);
+        //sending to update firebase: ethAddress from input, selectedContract from dashboard and balance from numberInput, name and symbol from SC
+        //setTokenFirebase(ethAddress.toLowerCase(), props.selectedContract, nameFirebase, (parseFloat(balance).toFixed(8)*(10**8)).toString(), symbolFirebase);
         MySwal.fire({
           position: 'top-end',
           icon: 'success',
@@ -101,13 +121,14 @@ export default function Transfer(props) {
           showConfirmButton: false,
           timer: 1500
         })
+        setIsLoading(false);
       })
       .catch((err)=>{
         console.log(err);
         if(err.code===4001){
           MySwal.fire({
             icon: 'info',
-            title: 'You canceled minting PAT',
+            title: 'You canceled transfer',
           })
         }
         else{
@@ -116,10 +137,10 @@ export default function Transfer(props) {
             title: 'Transfer error',
           })
         }
+        setIsLoading(false);
       });
     
     setOpen(false);
-
   }
 
   useEffect(()=>{
@@ -128,19 +149,25 @@ export default function Transfer(props) {
 
   useEffect(()=>{
     EtherAddressValidator() ? setAddressTransfer(true) : setAddressTransfer(false);
+    window.ethereum.selectedAddress === (ethAddress.toLowerCase()) ? setTransferYourself(true) : setTransferYourself(false);
+    
   },[ethAddress]);
-
+  
   return (
     <div>
     <StylesProvider injectFirst>
       <div onClick={handleClickOpen}>
         <h1 className={styles.heading}>{props.title}</h1>
         <p className={styles.paragraph}>{props.content}</p>
-        <AddIcon
-          className={styles.button}
-          onClick={handleClickOpen}
-          >
-        </AddIcon>
+        {
+          isLoading ?
+          <CircularProgress /> :
+          <AddIcon
+            className={styles.button}
+            onClick={handleClickOpen}
+            >
+          </AddIcon>
+        }
       </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Transfer</DialogTitle>
@@ -180,9 +207,9 @@ export default function Transfer(props) {
                 error={balanceError}
               >
               </TextField>
-
               {transfer===false ? <p>You do not have enough Ether, check out your account balance!</p> : null}
               {(addressTransfer === false && ethAddress.length > 0) ? <p>Invalid ethereum addres!</p> : null}
+              {transferYourself ? <p>You can't transfer to yourslef!</p> : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

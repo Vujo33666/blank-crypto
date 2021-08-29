@@ -6,6 +6,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Header(props){
 
@@ -34,6 +35,7 @@ function Header(props){
                                 'Success'
                                 )
                                 auth.logout(()=>{
+                                    localStorage.clear();
                                     props.userLogout.push("/");
                                 });
                             }
@@ -47,10 +49,14 @@ function Header(props){
                     </LockIcon> 
                 </div> :
                 <div className={styles.container}>
-                    <ArrowBackIcon
-                        className={styles.back}
-                        onClick={()=>{ props.userLogout.push("/dashboard") }}>
-                    </ArrowBackIcon> 
+                    {props.disabled ?
+                        <CircularProgress />
+                        :
+                        <ArrowBackIcon
+                            className={styles.back}
+                            onClick={()=>{ props.userLogout.push("/dashboard") }}>
+                        </ArrowBackIcon> 
+                    }
                 </div>
             }
         </header>
