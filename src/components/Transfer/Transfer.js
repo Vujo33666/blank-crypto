@@ -46,7 +46,7 @@ export default function Transfer(props) {
   const contract = new web3.eth.Contract(MyContract.abi,contractAddressWeb3);
   
   if(contract){
-    contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
+    contract.methods.balanceOf(props.userAddress).call().then(bal => {
       setBalanceOf(bal/(10**8));
    });
     contract.methods.name().call().then(result => {

@@ -1,5 +1,6 @@
 
 import firebase from "./firebase";
+import MyContract from "./contracts/build/contracts/PAToken.json";
 
 let docs = [];
 
@@ -16,7 +17,13 @@ let docs = [];
                 docs.push(doc.id);
 
             })
-            localStorage.setItem("initial_contract",docs[0])
+            
+            if(docs.length===0){
+                localStorage.setItem("initial_contract",MyContract.networks[4].address);
+            }
+            else{
+                localStorage.setItem("initial_contract",docs[0]);
+            }
         })
     }
 

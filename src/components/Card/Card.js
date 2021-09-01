@@ -12,12 +12,14 @@ const Card = (props)=>{
         <div className={styles.card}>
             {props.createToken ? 
                 <CreateTokenCard 
+                    key={props.title}
                     title={props.title} 
                     history={props.page} 
                     content={props.content} 
                     userAddress={props.userAddress}
                     /> :
                 <ExploreCard 
+                    key={props.title}
                     title={props.title} 
                     history={props.page} 
                     content={props.content} 
@@ -33,13 +35,15 @@ const Card = (props)=>{
                 </div>
                  :
                 [props.modal==="mint" ? 
-                    <Mint 
+                    <Mint
+                        key={props.title}
                         title={props.title} 
                         content={props.content} 
                         userAddress={props.userAddress}
                         selectedContract={props.selectedContract}
                     /> :
                     <Transfer 
+                        key={props.title}
                         title={props.title} 
                         content={props.content} 
                         userAddress={props.userAddress}
