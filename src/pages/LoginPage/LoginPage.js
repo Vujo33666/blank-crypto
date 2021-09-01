@@ -48,7 +48,7 @@ const LoginPage = (props) =>{
     return (
         <StylesProvider injectFirst>
             {/* redirect if user is authenticated */}
-            {Cookies.get("address") && <Redirect to="/dashboard" />}
+            {/* {Cookies.get("address") && <Redirect to="/dashboard" />} */}
             <div className={styles.main_container}>
                 <img src={login} className={styles.login} alt="login"/>
                 <div className={styles.container}>
@@ -71,7 +71,7 @@ const LoginPage = (props) =>{
                                 MySwal.fire({
                                     icon: 'info',
                                     title: 'Oops...',
-                                    text: 'Connect with one MetaMask account!',
+                                    text: 'Connect with one MetaMask account and refresh!',
                                 })
                                 ethereum.enable();
                             }else{

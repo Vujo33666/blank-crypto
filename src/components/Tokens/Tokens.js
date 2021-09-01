@@ -23,10 +23,10 @@ const Tokens = (props) =>{
                 items.push({token_id: doc.id, ...doc.data()});
             });
             if(items.length!==0){
-                localStorage.setItem("selectedContractFor_" + address, items[0].token_id);
                 setTokens(items);
                 changeContract(
-                    localStorage.getItem("selectedContractFor_" + address))
+                    localStorage.getItem("selectedContractFor_" + address) || items[0].token_id
+                    )
             }else{
                 setTokens([])
                 props.handleContract(undefined)
