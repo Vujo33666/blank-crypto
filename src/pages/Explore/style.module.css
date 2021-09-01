@@ -31,7 +31,13 @@
 @media screen and (max-width: 999px){
     .fields{
         margin: 10px auto 10px;
-        width: 400px;
     }
 }
 
+@media screen and (max-width: 450px){
+    .fields{
+        /* /margin: 10px auto 10px; */
+        font-size: 18px;
+        width:100%;
+    }
+}

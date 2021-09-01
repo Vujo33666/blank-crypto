@@ -31,17 +31,10 @@ export default function Token(props) {
     })
   }
 
-  // if(window.ethereum){
-  //   window.ethereum.on("accountsChanged",(accounts)=>{
-  //     localStorage.removeItem("selected_contract", props.id);
-  //   });
-  // }
-
   
     return (
       <div 
         className={props.selectedContract ? styles.active_token_card : styles.token_card} 
-        //LOKAL:className={props.id === props.selectedToken ? styles.active_token_card : styles.token_card}
         onClick={handleTokenCard}
       >
         <AttachMoneyIcon className={styles.button}/>

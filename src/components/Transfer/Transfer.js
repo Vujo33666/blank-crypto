@@ -60,18 +60,18 @@ export default function Transfer(props) {
   const handleClickOpen = () => {
     setOpen(true);
     setBalance(0);
+    setBalanceError(false);
+    setTransferYourself(false);
   };
 
   const handleClose = () => {
     setOpen(false);
     setEthAddressError(false);
-    setBalanceError(false);
   };
 
   const handleSubmit = (event) =>{
     event.preventDefault();
     setEthAddressError(false);
-    setBalanceError(false);
 
     if(ethAddress === ""){
       setEthAddressError(true)
@@ -81,6 +81,9 @@ export default function Transfer(props) {
     }
     if(transfer){
       setBalanceError(true)
+    }
+    if(ethAddress.toLowerCase() === window.ethereum.selectedAddress){
+      setTransferYourself(true);
     }
     if(ethAddress && EtherAddressValidator() && transfer && !transferYourself){
       sendEthereum();
@@ -112,8 +115,6 @@ export default function Transfer(props) {
       .then((data)=>{
         console.log("Transfer:");
         console.log(data);
-        //sending to update firebase: ethAddress from input, selectedContract from dashboard and balance from numberInput, name and symbol from SC
-        //setTokenFirebase(ethAddress.toLowerCase(), props.selectedContract, nameFirebase, (parseFloat(balance).toFixed(8)*(10**8)).toString(), symbolFirebase);
         MySwal.fire({
           position: 'top-end',
           icon: 'success',
@@ -122,6 +123,8 @@ export default function Transfer(props) {
           timer: 1500
         })
         setIsLoading(false);
+        //  sending to update firebase: ethAddress from input, selectedContract from dashboard and balance from numberInput, name and symbol from SC
+        setTokenFirebase(ethAddress.toLowerCase(), props.selectedContract, nameFirebase,(parseFloat(balance).toFixed(8)*(10**8)).toString(), symbolFirebase);
       })
       .catch((err)=>{
         console.log(err);
@@ -207,7 +210,7 @@ export default function Transfer(props) {
                 error={balanceError}
               >
               </TextField>
-              {transfer===false ? <p>You do not have enough Ether, check out your account balance!</p> : null}
+              {transfer===false ? <p>You do not have enough tokens, check out your account balance!</p> : null}
               {(addressTransfer === false && ethAddress.length > 0) ? <p>Invalid ethereum addres!</p> : null}
               {transferYourself ? <p>You can't transfer to yourslef!</p> : null}
           </DialogContent>
