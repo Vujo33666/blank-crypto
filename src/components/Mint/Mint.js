@@ -34,9 +34,6 @@ export default function Mint(props) {
     contractAddressWeb3=props.selectedContract;
   }
   const contract = new web3.eth.Contract(MyContract.abi,contractAddressWeb3);
-//   contract.methods.balanceOf(window.ethereum.selectedAddress).call().then(bal => {
-//     //console.log(bal)
-//  });
 
 
     function handleBalance(){
@@ -90,7 +87,7 @@ export default function Mint(props) {
       if(err.code===4001){
         MySwal.fire({
           icon: 'info',
-          title: 'You canceled minting PAT',
+          title: 'You canceled minting',
         })
       }
       setIsLoading(false);
@@ -121,7 +118,7 @@ export default function Mint(props) {
             Enter the amount of Ethereum for buying.
             <br />
             Account:<br/>
-            {props.userAddress}
+            <p className={styles.address}>{props.userAddress}</p>
           </DialogContentText>
           <TextField 
             type="number" 

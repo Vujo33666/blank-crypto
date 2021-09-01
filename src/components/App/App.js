@@ -1,6 +1,6 @@
 import './App.css';
 import React,{useState} from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import ProtectedRoute from "../../protected.route";
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import Dashboard from '../../pages/Dashboard/Dashboard';

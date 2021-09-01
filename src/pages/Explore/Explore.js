@@ -17,7 +17,9 @@ const Explore = (props) =>{
     const [paragraph,setParagraph] = useState(false);
     const refToCollection=firebase.firestore().collection(address);
     const [resultTokens,setResultTokens] = useState([]);
+    const [nameTokens,setNameTokens] = useState([]);
     let resultToken;
+    let nameToken;
     let resultEth;
     const [coinbaseRates,setCoinbaseRates]=useState({
         "dollars": 0,
@@ -25,7 +27,6 @@ const Explore = (props) =>{
     });
     
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:3000/');
-    //const contract = new web3.eth.Contract(MyContract.abi,MyContract.networks[4].address);
     let contracts = [];
     
     function getContracts(){
@@ -44,11 +45,17 @@ const Explore = (props) =>{
     async function getContractData(contData){
         let cont = new web3.eth.Contract(MyContract.abi,contData);
         await cont.methods.balanceOf(address).call().then(bal => {
-                    resultToken=bal/(10**8);
-                    setResultTokens( prev => {
-                        return [...prev, (bal/(10**8))]
-                    })
-                });
+                resultToken=bal/(10**8);
+                setResultTokens( prev => {
+                    return [...prev, resultToken]
+                })
+        });
+        await cont.methods.symbol().call().then(resultName => {
+            nameToken=resultName
+            setNameTokens( prev => {
+                return [...prev, nameToken]
+            })
+        });
     }
     
     async function handleBalance(){
@@ -78,7 +85,7 @@ const Explore = (props) =>{
             <Header userAddress={address} userLogout={props.history}/>
             <h2 className={styles.heading}>Explore</h2>
             <div className={styles.container}>
-            <p className={styles.fields}>Your addres is: {address}</p>
+            <p className={styles.fields}>Your addres is: <br />{address}</p>
                 <Button
                     variant="contained"
                     color="primary"
@@ -96,7 +103,7 @@ const Explore = (props) =>{
                         {
                             resultTokens.map((token,index)=>
                                 <p key={index}>
-                                    {index+1}. token supply: <strong>{token.toFixed(8)}</strong>
+                                    {index+1}. token supply: <strong>{token.toFixed(8)}</strong> {nameTokens[index]}
                                 </p>
                             )
                         }

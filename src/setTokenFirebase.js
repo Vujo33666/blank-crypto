@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import firebase from "./firebase";
 import MyContract from "./contracts/build/contracts/PAToken.json"
+import Tokens from "./components/Tokens/Tokens"
 
 const refToCollection = firebase.firestore();
 
@@ -19,10 +20,12 @@ export default function setTokenFirebase(address,sentContract,name,supply,symbol
                 token_symbol: symbol
         })
         .then(()=>{
-                console.log("Data added to Firebase!" )
+                console.log("Data added to Firebase!" );
+                //because of strange firebase behavior, when I update firebase, getTokens is called but with sender etehereumAddres
+                window.location.reload();
         })
         .catch((err) => {
             console.error(err);
         });
-
+        
 }

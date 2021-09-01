@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-import {Button} from '@material-ui/core';
+import {Button, Link} from '@material-ui/core';
 import logo from "../../ethereum.svg"
 import login from "../../images/login.svg"
 import Swal from 'sweetalert2'
@@ -9,6 +9,7 @@ import styles from './style.module.css'
 import Cookies from "js-cookie";
 import { StylesProvider } from "@material-ui/core/styles";
 import {getDocs,docs} from '../../getDocsFirebase';
+import { Redirect, Route } from "react-router";
 
 const LoginPage = (props) =>{
 
@@ -19,10 +20,6 @@ const LoginPage = (props) =>{
     const ethereum = window.ethereum;
 
     if(ethereum){
-        // ethereum.on("accountsChanged",(accounts)=>{
-        //     setAddrEther(accounts[0]);
-        // });
-
         ethereum
         .request({ method: 'eth_accounts' })
         .then(handleAccountsChanged)
@@ -45,13 +42,13 @@ const LoginPage = (props) =>{
 
     useEffect(()=>{
         ethereum ? setValidation(true) : setValidation(false);
-        window.ethereum.selectedAddress && setAddrEther( window.ethereum.selectedAddress);
-        window.ethereum.selectedAddress ? setWalletValidation(true) : setWalletValidation(false);
     },[ethereum]);
 
     
     return (
         <StylesProvider injectFirst>
+            {/* redirect if user is authenticated */}
+            {Cookies.get("address") && <Redirect to="/dashboard" />}
             <div className={styles.main_container}>
                 <img src={login} className={styles.login} alt="login"/>
                 <div className={styles.container}>
@@ -69,14 +66,14 @@ const LoginPage = (props) =>{
                                 auth.login(()=>{
                                     setTimeout(()=>
                                         props.history.push("/dashboard"),1000);
-                                });
+                                    });
                             }else if(validation){
                                 MySwal.fire({
                                     icon: 'info',
                                     title: 'Oops...',
                                     text: 'Connect with one MetaMask account!',
                                 })
-                                window.location.reload();
+                                ethereum.enable();
                             }else{
                                 MySwal.fire({
                                     icon: 'error',
